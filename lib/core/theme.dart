@@ -135,7 +135,11 @@ class AppTheme {
         ),
       ),
       chipTheme: ChipThemeData(
-        labelStyle: const TextStyle(fontFamily: 'Cairo', fontSize: 13),
+        labelStyle: TextStyle(fontFamily: 'Cairo', fontSize: 13, color: scheme.onSurface),
+        secondaryLabelStyle: TextStyle(
+            fontFamily: 'Cairo', fontSize: 13, color: scheme.primary, fontWeight: FontWeight.w700),
+        selectedColor: scheme.primary.withValues(alpha: 0.14),
+        checkmarkColor: scheme.primary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         side: BorderSide(color: scheme.outlineVariant),
       ),

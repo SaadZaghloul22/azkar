@@ -181,12 +181,13 @@ DATA = [
 ]
 
 import re
-# Waqf marks belong to the word before them (as in the Mushaf), not after a space.
+# Waqf (pause) marks are recitation aids; they render as floating glyphs in body
+# text on many phones, so they are removed. Letters and diacritics are untouched.
 for c in DATA:
     for z in c["items"]:
-        z["content"] = re.sub(r"\s+([\u06D6-\u06DC])", r"\1", z["content"])
+        z["content"] = re.sub(r"\s*[\u06D6-\u06DC]", "", z["content"])
 
-out = {"version": 2, "categories": []}
+out = {"version": 3, "categories": []}
 for i, c in enumerate(DATA):
     out["categories"].append({"id": c["id"], "name": c["name"], "icon": c["icon"], "sort": i, "items": c["items"]})
 json.dump(out, open("assets/data/azkar.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)

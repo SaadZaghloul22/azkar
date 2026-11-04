@@ -37,10 +37,12 @@ class _TasbihScreenState extends State<TasbihScreen> with WidgetsBindingObserver
   int _pendingProgress = 0;
   DateTime _startedAt = DateTime.now();
   bool _pressed = false;
+  late final AppState _app = context.read<AppState>();
 
   @override
   void initState() {
     super.initState();
+    _app;
     WidgetsBinding.instance.addObserver(this);
     _restore();
   }
@@ -85,7 +87,7 @@ class _TasbihScreenState extends State<TasbihScreen> with WidgetsBindingObserver
     if (_pendingProgress == 0) return;
     final n = _pendingProgress;
     _pendingProgress = 0;
-    await context.read<AppState>().addTasbeeh(n);
+    await _app.addTasbeeh(n);
   }
 
   /// Completed rounds are saved as they finish; reset saves only the partial count.
@@ -261,7 +263,11 @@ class _TasbihScreenState extends State<TasbihScreen> with WidgetsBindingObserver
                     child: GestureDetector(
                       onLongPress: _custom.contains(t) ? () => _removeCustom(t) : null,
                       child: ChoiceChip(
-                        label: Text(t, style: const TextStyle(fontFamily: 'Amiri', fontSize: 16)),
+                        label: Text(t,
+                            style: TextStyle(
+                                fontFamily: 'Amiri',
+                                fontSize: 16,
+                                color: Theme.of(context).colorScheme.onSurface)),
                         selected: t == _dhikr,
                         onSelected: (_) => _select(t),
                       ),

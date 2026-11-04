@@ -70,11 +70,11 @@ jobs:
           profile: pixel_6
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          script: flutter drive --driver=test_driver/integration_test.dart --target=integration_test/screenshots_test.dart > drive.txt 2>&1 || (tail -120 drive.txt; exit 1)
+          script: bash tool/emulator_run.sh
       - name: Publish screenshots
         if: always()
         run: |
-          mkdir -p screenshots && cp drive.txt screenshots/ 2>/dev/null || true
+          mkdir -p screenshots
           cd screenshots && git init -q -b screens && git add -A
           git -c user.name=ci -c user.email=ci@local commit -qm "screens ${GITHUB_SHA}" || exit 0
           for i in 1 2 3 4; do git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}" screens && break; sleep 10; done
