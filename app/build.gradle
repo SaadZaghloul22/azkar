@@ -6,7 +6,7 @@ android {
         applicationId "com.example.azkark"
         minSdk 21
         targetSdk 35
-        versionCode (System.getenv("VERSION_CODE") ?: "1000").toInteger()
+        versionCode = Integer.parseInt(System.getenv("VERSION_CODE") ?: "1000")
         versionName "3.0.0"
     }
     signingConfigs {
