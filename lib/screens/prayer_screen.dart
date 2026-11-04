@@ -334,7 +334,7 @@ class _PrayerSettingsSheet extends StatelessWidget {
                 SizedBox(
                   width: 48,
                   child: Text(
-                      arNum(((c.offsets[key] ?? 0) > 0 ? '+' : '') + '${c.offsets[key] ?? 0}'),
+                      arNum('${(c.offsets[key] ?? 0) > 0 ? '+' : ''}${c.offsets[key] ?? 0}'),
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
                 ),
