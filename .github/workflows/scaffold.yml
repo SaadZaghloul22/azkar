@@ -26,4 +26,4 @@ jobs:
           cd sk && rm -rf .dart_tool build
           git init -q -b scaffold && git add -A
           git -c user.name=ci -c user.email=ci@local commit -qm scaffold
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}" scaffold
+          for i in 1 2 3 4; do git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}" scaffold && break; sleep 10; done
