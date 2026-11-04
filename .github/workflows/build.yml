@@ -26,10 +26,11 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           VERSION_CODE: ${{ vars.VERSION_CODE }}
-        run: gradle :app:bundleRelease :app:assembleRelease --stacktrace
+        run: gradle :app:bundleRelease :app:assembleRelease :app:assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
         with:
           name: azkark-release
           path: |
             app/build/outputs/bundle/release/*.aab
             app/build/outputs/apk/release/*.apk
+            app/build/outputs/apk/debug/*.apk
