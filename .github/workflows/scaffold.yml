@@ -18,6 +18,9 @@ jobs:
           flutter pub add dev:integration_test --sdk=flutter
           cp ../flutter_version.txt .
           flutter pub get
+          mkdir -p _pkgsrc
+          for d in $PUB_CACHE/hosted/pub.dev/*/; do n=$(basename $d); case $n in provider-*|sqflite-*|sqflite_common-*|shared_preferences-*|adhan-*|geolocator-*|geolocator_platform_interface-*|geolocator_android-*|flutter_compass-*|flutter_local_notifications-*|flutter_local_notifications_platform_interface-*|timezone-*|flutter_timezone-*|share_plus-*|share_plus_platform_interface-*|hijri-*|permission_handler-*|permission_handler_platform_interface-*|workmanager-*|workmanager_platform_interface-*|workmanager_android-*) mkdir -p _pkgsrc/$n && cp -r $d/lib _pkgsrc/$n/ && cp $d/pubspec.yaml _pkgsrc/$n/ ;; esac; done
+          ls _pkgsrc
       - name: Push scaffold branch
         run: |
           cd sk && rm -rf .dart_tool build
