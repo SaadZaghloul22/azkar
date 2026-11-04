@@ -1,0 +1,26 @@
+name: Scaffold
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: subosito/flutter-action@v2
+        with: { channel: stable, cache: true }
+      - name: Create project and resolve deps
+        run: |
+          flutter --version > flutter_version.txt
+          flutter create --org com.azk --project-name azkarak --platforms android -a kotlin sk
+          cd sk
+          flutter pub add provider sqflite path shared_preferences adhan geolocator flutter_compass flutter_local_notifications timezone flutter_timezone share_plus path_provider hijri intl permission_handler workmanager
+          flutter pub add flutter_localizations --sdk=flutter
+          flutter pub add dev:integration_test --sdk=flutter
+          cp ../flutter_version.txt .
+          flutter pub get
+      - name: Push scaffold branch
+        run: |
+          cd sk && rm -rf .dart_tool build
+          git init -q -b scaffold && git add -A
+          git -c user.name=ci -c user.email=ci@local commit -qm scaffold
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}" scaffold
