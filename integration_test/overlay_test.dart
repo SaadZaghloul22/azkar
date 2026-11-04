@@ -14,7 +14,12 @@ void main() {
     for (var i = 0; i < 30; i++) {
       await tester.pump(const Duration(milliseconds: 100));
     }
-    expect(await NativeBridge.canDrawOverlays(), isTrue);
+    var granted = false;
+    for (var i = 0; i < 60 && !granted; i++) {
+      granted = await NativeBridge.canDrawOverlays();
+      if (!granted) await tester.pump(const Duration(seconds: 1));
+    }
+    expect(granted, isTrue, reason: 'overlay permission not granted on emulator');
     const cfg = OverlayConfig(categories: ['tasbih', 'sunnah_duas'], displaySeconds: 30);
     for (var round = 0; round < 6; round++) {
       await NativeBridge.previewOverlay(cfg, const []);
