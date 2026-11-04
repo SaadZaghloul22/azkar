@@ -1,4 +1,5 @@
 import 'package:azkarak/main.dart' as app;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:azkarak/services/native_bridge.dart';
 import 'package:azkarak/state/settings.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,8 +11,9 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('floating zekr window can be shown', (tester) async {
+    (await SharedPreferences.getInstance()).setBool('onboarded', true);
     app.main();
-    for (var i = 0; i < 30; i++) {
+    for (var i = 0; i < 40; i++) {
       await tester.pump(const Duration(milliseconds: 100));
     }
     var granted = false;

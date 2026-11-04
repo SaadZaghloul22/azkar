@@ -27,9 +27,34 @@ void main() {
     await prefs.setInt('themeMode', ThemeMode.light.index);
 
     app.main();
-    await settle(tester, 4000);
+    await settle(tester, 900);
     await binding.convertFlutterSurfaceToImage();
+    await settle(tester, 200);
+    expect(find.text('حصّن يومك بذكر الله'), findsOneWidget);
+    await binding.takeScreenshot('00_splash');
+
+    // First run: onboarding (skip every permission so no system dialog blocks the test).
+    await settle(tester, 2500);
+    expect(find.text('أهلًا بك في أذكار المسلم'), findsOneWidget);
+    await binding.takeScreenshot('00a_onboarding_welcome');
+    await tester.tap(find.text('ابدأ').hitTestable());
     await settle(tester);
+    expect(find.text('تفعيل التذكيرات'), findsOneWidget);
+    await binding.takeScreenshot('00b_onboarding_reminders');
+    await tester.tap(find.text('لاحقًا').hitTestable());
+    await settle(tester);
+    expect(find.text('تحديد موقعي'), findsOneWidget);
+    await binding.takeScreenshot('00c_onboarding_location');
+    await tester.tap(find.text('لاحقًا').hitTestable());
+    await settle(tester);
+    expect(find.text('تفعيل الأذكار التلقائية'), findsOneWidget);
+    await binding.takeScreenshot('00d_onboarding_overlay');
+    await tester.tap(find.text('لاحقًا').hitTestable());
+    await settle(tester);
+    expect(find.text('كل شيء جاهز'), findsOneWidget);
+    await binding.takeScreenshot('00e_onboarding_done');
+    await tester.tap(find.text('ابدأ الآن').hitTestable());
+    await settle(tester, 2000);
 
     expect(find.text('ذكر اليوم'), findsWidgets);
     await binding.takeScreenshot('01_home');

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/arabic.dart';
 import '../widgets/common.dart';
 
-const appVersion = '2.0.0';
+const appVersion = '2.0.1';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});

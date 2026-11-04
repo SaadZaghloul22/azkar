@@ -9,6 +9,7 @@ import 'screens/home_screen.dart';
 import 'screens/more_screen.dart';
 import 'screens/prayer_screen.dart';
 import 'screens/reader_screen.dart';
+import 'screens/splash_screen.dart';
 import 'screens/tasbih_screen.dart';
 import 'services/notifications.dart';
 import 'state/app_state.dart';
@@ -52,7 +53,7 @@ class AzkarApp extends StatelessWidget {
           ),
         );
       },
-      home: const HomeShell(),
+      home: const SplashScreen(),
     );
   }
 }
