@@ -1,7 +1,7 @@
 name: Build AAB
 on:
   push:
-    branches: [master]
+    branches: [main, master]
   workflow_dispatch:
 jobs:
   build:
