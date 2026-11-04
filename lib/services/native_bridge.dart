@@ -16,6 +16,11 @@ class NativeBridge {
 
   static Future<void> openBatterySettings() => _ch.invokeMethod('openBatterySettings');
 
+  /// Opens the phone maker's auto-start screen (realme/Oppo/Xiaomi/vivo/Huawei).
+  /// Returns false when only the app info page could be opened.
+  static Future<bool> openAutostartSettings() async =>
+      await _ch.invokeMethod<bool>('openAutostartSettings') ?? false;
+
   static Future<bool> isOverlayRunning() async =>
       await _ch.invokeMethod<bool>('isOverlayRunning') ?? false;
 

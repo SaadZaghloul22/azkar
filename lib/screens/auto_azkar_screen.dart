@@ -55,7 +55,7 @@ class _AutoAzkarScreenState extends State<AutoAzkarScreen> with WidgetsBindingOb
       return 'في هواتف شاومي: الإعدادات ← التطبيقات ← أذكار المسلم ← أذونات أخرى ← فعّل «عرض النوافذ المنبثقة أثناء التشغيل في الخلفية».';
     }
     if (m.contains('oppo') || m.contains('realme') || m.contains('oneplus')) {
-      return 'في هواتف أوبو وريلمي: الإعدادات ← التطبيقات ← أذكار المسلم ← فعّل «العرض فوق التطبيقات الأخرى» و«التشغيل التلقائي».';
+      return 'في هواتف ريلمي وأوبو: فعّل «التشغيل التلقائي» لأذكار المسلم، ومن «استخدام البطارية» فعّل «السماح بالنشاط في الخلفية». ويُفضّل قفل التطبيق في قائمة التطبيقات الأخيرة (اسحبه لأسفل) حتى لا يُغلق عند تنظيفها.';
     }
     if (m.contains('vivo')) {
       return 'في هواتف فيفو: الإعدادات ← التطبيقات ← أذكار المسلم ← الأذونات ← فعّل «النوافذ العائمة».';
@@ -149,15 +149,43 @@ class _AutoAzkarScreenState extends State<AutoAzkarScreen> with WidgetsBindingOb
                 ),
               ),
             ),
-          if (o.enabled && _canOverlay && _brandTip() != null)
+          if (o.enabled && _brandTip() != null)
             Padding(
               padding: const EdgeInsets.only(top: 12),
               child: Card(
                 color: cs.secondary.withValues(alpha: 0.12),
-                child: ListTile(
-                  leading: const Icon(Icons.phone_android_rounded),
-                  title: const Text('إذن إضافي لهاتفك'),
-                  subtitle: Text(_brandTip()!),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        children: [
+                          Icon(Icons.phone_android_rounded),
+                          SizedBox(width: 8),
+                          Text('مهم لهاتفك حتى لا تتوقف الأذكار',
+                              style: TextStyle(fontWeight: FontWeight.w800)),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      Text(_brandTip()!, style: const TextStyle(fontSize: 13, height: 1.7)),
+                      Wrap(
+                        spacing: 8,
+                        children: [
+                          TextButton.icon(
+                            onPressed: NativeBridge.openAutostartSettings,
+                            icon: const Icon(Icons.rocket_launch_rounded, size: 18),
+                            label: const Text('التشغيل التلقائي'),
+                          ),
+                          TextButton.icon(
+                            onPressed: NativeBridge.openBatterySettings,
+                            icon: const Icon(Icons.battery_charging_full_rounded, size: 18),
+                            label: const Text('البطارية'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -297,7 +325,7 @@ class _AutoAzkarScreenState extends State<AutoAzkarScreen> with WidgetsBindingOb
                 ),
                 const SizedBox(height: 6),
                 const Text(
-                  'تعمل الأذكار التلقائية كخدمة بإشعار ثابت. بعض الشركات (شاومي، أوبو، فيفو، هواوي، سامسونج) توقف الخدمات لتوفير البطارية. إذا توقفت الأذكار، اجعل التطبيق «غير مقيّد» في إعدادات البطارية.',
+                  'يشترط أندرويد إشعارًا ثابتًا لأي خدمة تعمل في الخلفية، وهو صامت. يمكنك إخفاؤه بالضغط عليه مطولًا ← إيقاف «تشغيل الأذكار التلقائية» دون أن تتوقف الأذكار.\n\nبعض الشركات (ريلمي، أوبو، شاومي، فيفو، هواوي) تغلق التطبيقات في الخلفية. التطبيق يعيد تشغيل الأذكار تلقائيًا، لكن لأفضل نتيجة فعّل التشغيل التلقائي واجعل البطارية «غير مقيّدة».',
                   style: TextStyle(fontSize: 13, height: 1.7),
                 ),
                 TextButton(

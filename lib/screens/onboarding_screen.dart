@@ -351,11 +351,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> with WidgetsBinding
         body:
             'ذكر قصير يظهر فوق التطبيقات كل ١٥ دقيقة ليذكّرك بالله. لا يظهر أثناء المكالمات أو في وضع عدم الإزعاج، ويمكنك إيقافه في أي وقت.\n\nيتطلب إذن «الظهور فوق التطبيقات».',
         content: _overlayGranted
-            ? Center(
-                child: Chip(
-                  avatar: Icon(Icons.check_circle_rounded, color: cs.primary),
-                  label: const Text('تم التفعيل'),
-                ),
+            ? Column(
+                children: [
+                  Chip(
+                    avatar: Icon(Icons.check_circle_rounded, color: cs.primary),
+                    label: const Text('تم التفعيل'),
+                  ),
+                  const SizedBox(height: 8),
+                  Text('في هواتف ريلمي وأوبو وشاومي وفيفو: فعّل «التشغيل التلقائي» حتى لا يوقف الهاتف الأذكار.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 13, color: cs.onSurface.withValues(alpha: 0.7))),
+                  TextButton.icon(
+                    onPressed: NativeBridge.openAutostartSettings,
+                    icon: const Icon(Icons.rocket_launch_rounded, size: 18),
+                    label: const Text('فتح التشغيل التلقائي'),
+                  ),
+                ],
               )
             : (_overlayRequested
                 ? Text('فعّل الإذن لتطبيق «أذكار المسلم» ثم ارجع هنا.',

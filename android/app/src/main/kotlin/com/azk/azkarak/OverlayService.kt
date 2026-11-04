@@ -32,13 +32,17 @@ class OverlayService : Service() {
 
         @Volatile var running = false
 
-        fun start(context: Context) {
+        const val EXTRA_SHOW_NOW = "show_now"
+
+        fun start(context: Context, showNow: Boolean = false) {
             val i = Intent(context, OverlayService::class.java).setAction(ACTION_START)
+                .putExtra(EXTRA_SHOW_NOW, showNow)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(i)
             else context.startService(i)
         }
 
         fun stop(context: Context) {
+            OverlayAlarm.cancel(context)
             context.stopService(Intent(context, OverlayService::class.java))
         }
 
@@ -85,6 +89,8 @@ class OverlayService : Service() {
                 }
             }
             handler.postDelayed(this, intervalMs)
+            // Watchdog a little after the next tick, in case the system kills this service.
+            OverlayAlarm.schedule(this@OverlayService, intervalMs + 60_000L)
         }
     }
 
@@ -92,6 +98,13 @@ class OverlayService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == ACTION_STOP) {
+            // Stopped from the notification: turn the feature off so the watchdog stays quiet.
+            Prefs.overlayConfig(this)?.let {
+                it.put("enabled", false)
+                getSharedPreferences(Prefs.FILE, Context.MODE_PRIVATE).edit()
+                    .putString(Prefs.OVERLAY_CONFIG, it.toString()).apply()
+            }
+            OverlayAlarm.cancel(this)
             stopSelf()
             return START_NOT_STICKY
         }
@@ -100,7 +113,12 @@ class OverlayService : Service() {
         val config = Prefs.overlayConfig(this)
         intervalMs = (config?.optInt("intervalMinutes", 15) ?: 15).coerceIn(1, 240) * 60_000L
         handler.removeCallbacks(tick)
-        handler.postDelayed(tick, intervalMs)
+        if (intent?.getBooleanExtra(EXTRA_SHOW_NOW, false) == true) {
+            handler.post(tick)
+        } else {
+            handler.postDelayed(tick, intervalMs)
+        }
+        OverlayAlarm.schedule(this, intervalMs + 60_000L)
         return START_STICKY
     }
 
