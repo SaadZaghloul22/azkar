@@ -29,6 +29,11 @@ class NativeBridge {
         }),
       });
 
+  /// Last attempt to show the floating window: status ("shown", "no_permission",
+  /// "error:..."), time, phone manufacturer and Android SDK level.
+  static Future<Map<String, Object?>> overlayStatus() async =>
+      (await _ch.invokeMapMethod<String, Object?>('overlayStatus')) ?? const {};
+
   static Future<void> stopOverlay() => _ch.invokeMethod('stopOverlay');
 
   /// Shows one floating zekr right away so the user can preview the design.

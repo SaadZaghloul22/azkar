@@ -42,6 +42,15 @@ class MainActivity : FlutterActivity() {
                             result.success(null)
                         }
                         "isOverlayRunning" -> result.success(OverlayService.running)
+                        "overlayStatus" -> {
+                            val p = getSharedPreferences(Prefs.FILE, Context.MODE_PRIVATE)
+                            result.success(mapOf(
+                                "status" to p.getString(Prefs.LAST_STATUS, null),
+                                "at" to p.getLong(Prefs.LAST_STATUS_AT, 0L),
+                                "manufacturer" to Build.MANUFACTURER,
+                                "sdk" to Build.VERSION.SDK_INT
+                            ))
+                        }
                         "startOverlay" -> {
                             val cfg = call.argument<String>("config") ?: "{}"
                             getSharedPreferences(Prefs.FILE, Context.MODE_PRIVATE).edit()

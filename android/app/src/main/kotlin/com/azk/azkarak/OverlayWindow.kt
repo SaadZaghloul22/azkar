@@ -36,7 +36,8 @@ object OverlayWindow {
 
     fun show(context: Context, zekr: NativeZekr, seconds: Int) {
         if (!canDraw(context)) {
-            notify(context, zekr)
+            setStatus(context, "no_permission")
+            notify(context, zekr, needsPermission = true)
             return
         }
         handler.post { addView(context.applicationContext, zekr, seconds) }
@@ -154,8 +155,10 @@ object OverlayWindow {
             current = card
             card.animate().alpha(1f).setDuration(250).start()
             handler.postDelayed({ if (current === card) remove(context) }, seconds.coerceIn(3, 60) * 1000L)
-        } catch (_: Exception) {
-            notify(context, zekr)
+            setStatus(context, "shown")
+        } catch (e: Exception) {
+            setStatus(context, "error:" + (e.javaClass.simpleName + " " + (e.message ?: "")).take(160))
+            notify(context, zekr, needsPermission = false)
         }
     }
 
@@ -168,8 +171,15 @@ object OverlayWindow {
         }
     }
 
-    /** Fallback when the overlay permission is not granted. */
-    fun notify(context: Context, zekr: NativeZekr) {
+    private fun setStatus(context: Context, status: String) {
+        context.getSharedPreferences(Prefs.FILE, Context.MODE_PRIVATE).edit()
+            .putString(Prefs.LAST_STATUS, status)
+            .putLong(Prefs.LAST_STATUS_AT, System.currentTimeMillis())
+            .apply()
+    }
+
+    /** Fallback when the floating window cannot be shown. */
+    fun notify(context: Context, zekr: NativeZekr, needsPermission: Boolean) {
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             nm.createNotificationChannel(
@@ -187,14 +197,23 @@ object OverlayWindow {
         @Suppress("DEPRECATION")
         val b = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
             Notification.Builder(context, MSG_CHANNEL) else Notification.Builder(context)
-        val n = b.setSmallIcon(R.drawable.ic_stat_azkar)
+        b.setSmallIcon(R.drawable.ic_stat_azkar)
             .setContentTitle(zekr.title)
             .setContentText(zekr.content)
             .setStyle(Notification.BigTextStyle().bigText(zekr.content))
             .setColor(Color.parseColor("#0E6B4E"))
             .setAutoCancel(true)
             .setContentIntent(pi)
-            .build()
+        if (needsPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val grant = PendingIntent.getActivity(
+                context, 3,
+                Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, android.net.Uri.parse("package:" + context.packageName))
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+            b.addAction(Notification.Action.Builder(null, "تفعيل النافذة العائمة", grant).build())
+        }
+        val n = b.build()
         try { nm.notify(MSG_ID, n) } catch (_: SecurityException) { }
     }
 }

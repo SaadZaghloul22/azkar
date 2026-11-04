@@ -83,6 +83,8 @@ object Prefs {
     const val WIDGET_TEXT = "widget_text"
     const val WIDGET_TITLE = "widget_title"
     const val WIDGET_DAY = "widget_day"
+    const val LAST_STATUS = "overlay_last_status"
+    const val LAST_STATUS_AT = "overlay_last_status_at"
 
     fun overlayConfig(context: Context): JSONObject? {
         val raw = context.getSharedPreferences(FILE, Context.MODE_PRIVATE)

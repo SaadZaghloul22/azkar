@@ -17,6 +17,7 @@ class AutoAzkarScreen extends StatefulWidget {
 
 class _AutoAzkarScreenState extends State<AutoAzkarScreen> with WidgetsBindingObserver {
   bool _canOverlay = false;
+  Map<String, Object?> _status = const {};
 
   @override
   void initState() {
@@ -38,7 +39,31 @@ class _AutoAzkarScreenState extends State<AutoAzkarScreen> with WidgetsBindingOb
 
   Future<void> _check() async {
     final v = await NativeBridge.canDrawOverlays();
-    if (mounted) setState(() => _canOverlay = v);
+    final st = await NativeBridge.overlayStatus();
+    if (mounted) {
+      setState(() {
+        _canOverlay = v;
+        _status = st;
+      });
+    }
+  }
+
+  /// Some manufacturers need an extra permission besides "display over other apps".
+  String? _brandTip() {
+    final m = (_status['manufacturer'] as String? ?? '').toLowerCase();
+    if (m.contains('xiaomi') || m.contains('redmi') || m.contains('poco')) {
+      return 'في هواتف شاومي: الإعدادات ← التطبيقات ← أذكار المسلم ← أذونات أخرى ← فعّل «عرض النوافذ المنبثقة أثناء التشغيل في الخلفية».';
+    }
+    if (m.contains('oppo') || m.contains('realme') || m.contains('oneplus')) {
+      return 'في هواتف أوبو وريلمي: الإعدادات ← التطبيقات ← أذكار المسلم ← فعّل «العرض فوق التطبيقات الأخرى» و«التشغيل التلقائي».';
+    }
+    if (m.contains('vivo')) {
+      return 'في هواتف فيفو: الإعدادات ← التطبيقات ← أذكار المسلم ← الأذونات ← فعّل «النوافذ العائمة».';
+    }
+    if (m.contains('huawei') || m.contains('honor')) {
+      return 'في هواتف هواوي: الإعدادات ← التطبيقات ← أذكار المسلم ← فعّل «النوافذ العائمة»، واجعل التشغيل «يدويًا» مع السماح بالعمل في الخلفية.';
+    }
+    return null;
   }
 
   Future<void> _save(OverlayConfig c) async {
@@ -121,6 +146,31 @@ class _AutoAzkarScreenState extends State<AutoAzkarScreen> with WidgetsBindingOb
                   subtitle: const Text('امنح إذن الظهور فوق التطبيقات لعرض النافذة العائمة'),
                   trailing: TextButton(
                       onPressed: NativeBridge.openOverlaySettings, child: const Text('منح')),
+                ),
+              ),
+            ),
+          if (o.enabled && _canOverlay && _brandTip() != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Card(
+                color: cs.secondary.withValues(alpha: 0.12),
+                child: ListTile(
+                  leading: const Icon(Icons.phone_android_rounded),
+                  title: const Text('إذن إضافي لهاتفك'),
+                  subtitle: Text(_brandTip()!),
+                ),
+              ),
+            ),
+          if ((_status['status'] as String?)?.startsWith('error') ?? false)
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: Card(
+                color: Colors.red.withValues(alpha: 0.08),
+                child: ListTile(
+                  leading: const Icon(Icons.error_outline_rounded, color: Colors.red),
+                  title: const Text('تعذّر عرض النافذة العائمة آخر مرة'),
+                  subtitle: Text(
+                      'أُرسل الذكر كإشعار بدلًا منها.\nالسبب: ${(_status['status'] as String).substring(6)}'),
                 ),
               ),
             ),
