@@ -66,6 +66,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     return Scaffold(
       backgroundColor: AppColors.emerald,
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -79,6 +81,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             child: FadeTransition(
               opacity: fade,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Spacer(flex: 3),
                   ScaleTransition(
@@ -111,6 +114,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: Container(
+                      width: double.infinity,
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                       decoration: BoxDecoration(
                         color: Colors.white.withValues(alpha: 0.08),
