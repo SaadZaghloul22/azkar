@@ -499,7 +499,7 @@ class _CounterBar extends StatelessWidget {
           IconButton.filledTonal(
             tooltip: 'السابق',
             onPressed: canPrev ? onPrev : null,
-            icon: const Icon(Icons.chevron_right_rounded),
+            icon: const Icon(Icons.chevron_left_rounded),
           ),
           Expanded(
             child: Center(
@@ -549,7 +549,7 @@ class _CounterBar extends StatelessWidget {
           IconButton.filledTonal(
             tooltip: 'التالي',
             onPressed: canNext ? onNext : null,
-            icon: const Icon(Icons.chevron_left_rounded),
+            icon: const Icon(Icons.chevron_right_rounded),
           ),
         ],
       ),

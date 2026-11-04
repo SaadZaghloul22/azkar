@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:azkarak/app.dart' show navigatorKey;
 import 'package:azkarak/main.dart' as app;
 import 'package:azkarak/state/settings.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ void main() {
     await tester.tap(find.text('اضغط').first);
     await settle(tester, 1500);
     await binding.takeScreenshot('03_reader_next');
-    await tester.pageBack();
+    navigatorKey.currentState!.pop();
     await settle(tester);
 
     // Categories tab.
@@ -74,7 +75,7 @@ void main() {
     await tester.tap(find.text('الأذكار التلقائية').first);
     await settle(tester);
     await binding.takeScreenshot('08_auto_azkar');
-    await tester.pageBack();
+    navigatorKey.currentState!.pop();
     await settle(tester);
 
     // Dark mode reader.
@@ -83,7 +84,7 @@ void main() {
     await binding.takeScreenshot('09_settings');
     await tester.tap(find.text('داكن'));
     await settle(tester);
-    await tester.pageBack();
+    navigatorKey.currentState!.pop();
     await settle(tester);
     await tester.tap(find.text('الرئيسية').last);
     await settle(tester);
