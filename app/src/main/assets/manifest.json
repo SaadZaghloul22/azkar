@@ -2,7 +2,7 @@
   "name": "اذكارنا - اذكار المسلم اليومية",
   "short_name": "أذكارك",
   "description": "حصن المسلم اليومي - أذكار الصباح والمساء والصلاة",
-  "id": "com.example.azkark",
+  "id": "com.azk.azkarak",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b1f14",
