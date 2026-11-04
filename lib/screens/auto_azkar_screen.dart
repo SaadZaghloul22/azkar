@@ -60,10 +60,14 @@ class _AutoAzkarScreenState extends State<AutoAzkarScreen> with WidgetsBindingOb
     if (m.contains('vivo')) {
       return 'في هواتف فيفو: الإعدادات ← التطبيقات ← أذكار المسلم ← الأذونات ← فعّل «النوافذ العائمة».';
     }
+    if (m.contains('samsung')) {
+      return 'في هواتف سامسونج: الإعدادات ← العناية بالجهاز ← البطارية ← حدود استخدام الخلفية ← أضف أذكار المسلم إلى «التطبيقات التي لا تدخل في وضع السكون أبدًا».';
+    }
     if (m.contains('huawei') || m.contains('honor')) {
       return 'في هواتف هواوي: الإعدادات ← التطبيقات ← أذكار المسلم ← فعّل «النوافذ العائمة»، واجعل التشغيل «يدويًا» مع السماح بالعمل في الخلفية.';
     }
-    return null;
+    if (m.isEmpty) return null;
+    return 'حتى لا يوقف هاتفك الأذكار: من إعدادات البطارية اجعل أذكار المسلم «غير مقيّد»، وفعّل التشغيل التلقائي إن وُجد.';
   }
 
   Future<void> _save(OverlayConfig c) async {

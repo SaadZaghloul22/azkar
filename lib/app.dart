@@ -11,6 +11,7 @@ import 'screens/prayer_screen.dart';
 import 'screens/reader_screen.dart';
 import 'screens/splash_screen.dart';
 import 'screens/tasbih_screen.dart';
+import 'services/native_bridge.dart';
 import 'services/notifications.dart';
 import 'state/app_state.dart';
 import 'state/settings.dart';
@@ -74,7 +75,32 @@ class _HomeShellState extends State<HomeShell> {
     super.initState();
     final n = NotificationService.instance.tappedPayload;
     n.addListener(_onPayload);
-    WidgetsBinding.instance.addPostFrameCallback((_) => _onPayload());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _onPayload();
+      _checkUpdate();
+    });
+  }
+
+  Future<void> _checkUpdate() async {
+    if (!await NativeBridge.updateAvailable() || !mounted) return;
+    await showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        icon: const Icon(Icons.system_update_rounded, size: 40),
+        title: const Text('تحديث جديد متاح'),
+        content: const Text('صدر إصدار جديد من أذكار المسلم بتحسينات ومميزات جديدة. حدّث الآن لتحصل عليها.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('لاحقًا')),
+          FilledButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              NativeBridge.startUpdate();
+            },
+            child: const Text('تحديث الآن'),
+          ),
+        ],
+      ),
+    );
   }
 
   @override

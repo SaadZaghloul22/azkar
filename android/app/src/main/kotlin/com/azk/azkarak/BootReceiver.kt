@@ -11,10 +11,16 @@ class BootReceiver : BroadcastReceiver() {
         if (action != Intent.ACTION_BOOT_COMPLETED &&
             action != Intent.ACTION_MY_PACKAGE_REPLACED &&
             action != "android.intent.action.QUICKBOOT_POWERON") return
-        val config = Prefs.overlayConfig(context) ?: return
-        if (config.optBoolean("enabled", false)) {
-            try { OverlayService.start(context) } catch (_: Exception) { }
+        val config = Prefs.overlayConfig(context)
+        if (config != null && config.optBoolean("enabled", false)) {
+            try {
+                OverlayService.start(context)
+            } catch (_: Exception) {
+                // Background start refused: the watchdog alarm will retry shortly.
+                OverlayAlarm.schedule(context, 60_000L)
+            }
         }
         AzkarWidget.updateAll(context)
+        try { UpdateChecker.scheduleDaily(context) } catch (_: Exception) { }
     }
 }

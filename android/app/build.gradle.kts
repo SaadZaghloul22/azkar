@@ -50,4 +50,6 @@ flutter {
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+    // Google Play in-app updates: tells users a new version is available.
+    implementation("com.google.android.play:app-update:2.1.0")
 }

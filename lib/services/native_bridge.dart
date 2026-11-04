@@ -50,6 +50,19 @@ class NativeBridge {
         }),
       });
 
+  /// Asks Google Play whether a newer version is published (Play installs only).
+  static Future<bool> updateAvailable() async {
+    try {
+      final r = await _ch.invokeMapMethod<String, Object?>('checkUpdate');
+      return r?['available'] == true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Starts Play's in-app update screen, or opens the store page.
+  static Future<void> startUpdate() => _ch.invokeMethod('startUpdate');
+
   static Future<void> refreshWidget() => _ch.invokeMethod('refreshWidget');
 
   static Future<bool> requestPinWidget() async =>

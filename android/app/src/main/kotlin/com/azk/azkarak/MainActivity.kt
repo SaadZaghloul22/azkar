@@ -10,6 +10,11 @@ import android.provider.Settings
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import com.google.android.play.core.appupdate.AppUpdateInfo
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.appupdate.AppUpdateOptions
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import org.json.JSONObject
 
 class MainActivity : FlutterActivity() {
@@ -37,8 +42,11 @@ class MainActivity : FlutterActivity() {
         return false
     }
 
+    private var pendingUpdate: AppUpdateInfo? = null
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        try { UpdateChecker.scheduleDaily(this) } catch (_: Exception) { }
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "azkarak/native")
             .setMethodCallHandler { call, result ->
                 try {
@@ -67,6 +75,31 @@ class MainActivity : FlutterActivity() {
                         }
                         "isOverlayRunning" -> result.success(OverlayService.running)
                         "openAutostartSettings" -> result.success(openAutostart())
+                        "checkUpdate" -> {
+                            // Only works for installs from Google Play; elsewhere it just reports none.
+                            AppUpdateManagerFactory.create(this).appUpdateInfo
+                                .addOnSuccessListener { info ->
+                                    val available = info.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE ||
+                                        info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+                                    pendingUpdate = if (available) info else null
+                                    result.success(mapOf(
+                                        "available" to available,
+                                        "versionCode" to info.availableVersionCode()
+                                    ))
+                                }
+                                .addOnFailureListener { result.success(mapOf("available" to false)) }
+                        }
+                        "startUpdate" -> {
+                            val info = pendingUpdate
+                            if (info != null && info.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
+                                AppUpdateManagerFactory.create(this).startUpdateFlowForResult(
+                                    info, this, AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build(), 7401
+                                )
+                            } else {
+                                startActivity(UpdateChecker.storeIntent(this))
+                            }
+                            result.success(null)
+                        }
                         "overlayStatus" -> {
                             val p = getSharedPreferences(Prefs.FILE, Context.MODE_PRIVATE)
                             result.success(mapOf(
