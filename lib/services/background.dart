@@ -17,7 +17,7 @@ void callbackDispatcher() {
       final settings = SettingsController(prefs);
       await NotificationService.instance.init();
       await NotificationService.instance.schedulePrayerAlerts(settings.prayer);
-      final db = await AppDatabase.open();
+      final db = await AppDatabase.open(singleInstance: false);
       await NotificationService.instance
           .scheduleReminders(settings.reminders, await db.allAzkar());
       await db.close();

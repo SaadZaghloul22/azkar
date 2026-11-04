@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -38,10 +39,17 @@ class AzkarApp extends StatelessWidget {
       builder: (context, child) {
         // Respect system font scaling but keep layouts sane on very large settings.
         final mq = MediaQuery.of(context);
-        return MediaQuery(
-          data: mq.copyWith(
-              textScaler: mq.textScaler.clamp(minScaleFactor: 0.9, maxScaleFactor: 1.3)),
-          child: child!,
+        final dark = Theme.of(context).brightness == Brightness.dark;
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: (dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(
+            statusBarColor: Colors.transparent,
+            systemNavigationBarColor: Theme.of(context).colorScheme.surface,
+          ),
+          child: MediaQuery(
+            data: mq.copyWith(
+                textScaler: mq.textScaler.clamp(minScaleFactor: 0.9, maxScaleFactor: 1.3)),
+            child: child!,
+          ),
         );
       },
       home: const HomeShell(),

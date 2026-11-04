@@ -15,7 +15,10 @@ class AppDatabase {
   static const schemaVersion = 1;
   static const contentAsset = 'assets/data/azkar.json';
 
-  static Future<AppDatabase> open({String? path, String? contentJson}) async {
+  /// [singleInstance] must be false for the background worker, otherwise closing its
+  /// connection would also close the one the app is using.
+  static Future<AppDatabase> open(
+      {String? path, String? contentJson, bool singleInstance = true}) async {
     final dbPath = path ?? p.join(await getDatabasesPath(), 'azkar.db');
     final db = await openDatabase(
       dbPath,
@@ -23,6 +26,7 @@ class AppDatabase {
       onConfigure: (db) => db.execute('PRAGMA foreign_keys = ON'),
       onCreate: (db, v) => _createSchema(db),
       onUpgrade: (db, from, to) => _migrate(db, from, to),
+      singleInstance: singleInstance,
     );
     final app = AppDatabase._(db);
     await app._syncContent(contentJson ?? await rootBundle.loadString(contentAsset));
