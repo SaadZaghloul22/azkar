@@ -92,6 +92,9 @@ class NotificationService {
   /// [randomPool] supplies the text of the daily random zekr.
   Future<void> scheduleReminders(List<ReminderConfig> reminders, List<Zekr> randomPool) async {
     await init();
+    // Exact alarms are delivered far more reliably on phones with aggressive battery
+    // managers (realme, Oppo, Xiaomi…). Fall back to inexact when not permitted.
+    final exact = await canExact();
     for (final r in reminders) {
       final id = _reminderIds[r.key]!;
       await plugin.cancel(id: id);
@@ -136,7 +139,9 @@ class NotificationService {
             styleInformation: BigTextStyleInformation(body),
           ),
         ),
-        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+        androidScheduleMode: exact
+            ? AndroidScheduleMode.exactAllowWhileIdle
+            : AndroidScheduleMode.inexactAllowWhileIdle,
         matchDateTimeComponents: DateTimeComponents.time,
         payload: payload,
       );
@@ -176,6 +181,23 @@ class NotificationService {
         );
       }
     }
+  }
+
+  /// Schedules one test reminder [after] from now, so the user can close the app
+  /// and check that scheduled notifications really arrive on their phone.
+  Future<void> scheduleTest(Duration after) async {
+    await init();
+    final exact = await canExact();
+    await plugin.zonedSchedule(
+      id: 98,
+      title: 'تذكير تجريبي',
+      body: 'وصلك هذا التذكير، إذن التذكيرات تعمل على هاتفك بإذن الله',
+      scheduledDate: tz.TZDateTime.now(tz.local).add(after),
+      notificationDetails: const NotificationDetails(android: _reminderChannel),
+      androidScheduleMode:
+          exact ? AndroidScheduleMode.exactAllowWhileIdle : AndroidScheduleMode.inexactAllowWhileIdle,
+      payload: 'home',
+    );
   }
 
   Future<void> showNow(String title, String body, {String? payload}) async {

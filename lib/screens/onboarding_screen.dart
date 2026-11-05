@@ -76,6 +76,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> with WidgetsBinding
     final s = context.read<SettingsController>();
     final state = context.read<AppState>();
     final granted = await NotificationService.instance.requestPermission();
+    // Exact alarms make reminders arrive on time on phones that delay background work.
+    if (granted && !await NotificationService.instance.canExact()) {
+      await NotificationService.instance.requestExact();
+    }
     for (final r in s.reminders) {
       if (_picked.containsKey(r.key)) {
         await s.setReminder(r.copyWith(enabled: _picked[r.key]!));

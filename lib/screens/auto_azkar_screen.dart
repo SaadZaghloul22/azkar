@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../core/arabic.dart';
+import '../core/device_tips.dart';
 import '../services/native_bridge.dart';
 import '../services/notifications.dart';
 import '../state/app_state.dart';
@@ -48,27 +49,7 @@ class _AutoAzkarScreenState extends State<AutoAzkarScreen> with WidgetsBindingOb
     }
   }
 
-  /// Some manufacturers need an extra permission besides "display over other apps".
-  String? _brandTip() {
-    final m = (_status['manufacturer'] as String? ?? '').toLowerCase();
-    if (m.contains('xiaomi') || m.contains('redmi') || m.contains('poco')) {
-      return 'في هواتف شاومي: الإعدادات ← التطبيقات ← أذكار المسلم ← أذونات أخرى ← فعّل «عرض النوافذ المنبثقة أثناء التشغيل في الخلفية».';
-    }
-    if (m.contains('oppo') || m.contains('realme') || m.contains('oneplus')) {
-      return 'في هواتف ريلمي وأوبو: فعّل «التشغيل التلقائي» لأذكار المسلم، ومن «استخدام البطارية» فعّل «السماح بالنشاط في الخلفية». ويُفضّل قفل التطبيق في قائمة التطبيقات الأخيرة (اسحبه لأسفل) حتى لا يُغلق عند تنظيفها.';
-    }
-    if (m.contains('vivo')) {
-      return 'في هواتف فيفو: الإعدادات ← التطبيقات ← أذكار المسلم ← الأذونات ← فعّل «النوافذ العائمة».';
-    }
-    if (m.contains('samsung')) {
-      return 'في هواتف سامسونج: الإعدادات ← العناية بالجهاز ← البطارية ← حدود استخدام الخلفية ← أضف أذكار المسلم إلى «التطبيقات التي لا تدخل في وضع السكون أبدًا».';
-    }
-    if (m.contains('huawei') || m.contains('honor')) {
-      return 'في هواتف هواوي: الإعدادات ← التطبيقات ← أذكار المسلم ← فعّل «النوافذ العائمة»، واجعل التشغيل «يدويًا» مع السماح بالعمل في الخلفية.';
-    }
-    if (m.isEmpty) return null;
-    return 'حتى لا يوقف هاتفك الأذكار: من إعدادات البطارية اجعل أذكار المسلم «غير مقيّد»، وفعّل التشغيل التلقائي إن وُجد.';
-  }
+  String? _brandTip() => deviceTip(_status['manufacturer'] as String? ?? '');
 
   Future<void> _save(OverlayConfig c) async {
     await context.read<SettingsController>().setOverlay(c);
