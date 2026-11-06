@@ -32,6 +32,9 @@ void main() {
     await wait(tester, 3000);
     await tester.tap(find.byType(Switch).first);
     await wait(tester, 4000);
+    await tester.scrollUntilVisible(find.text('معاينة الآن'), 300,
+        scrollable: find.byType(Scrollable).last);
+    await wait(tester, 1500);
     await tester.tap(find.text('معاينة الآن'));
     await wait(tester, 12000);
     // A second zekr while the recording also shows the notification shade.

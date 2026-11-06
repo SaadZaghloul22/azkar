@@ -16,19 +16,20 @@ OVL=$?
 kill $CAP 2>/dev/null
 
 # Demo video for the Play foreground-service declaration.
-adb shell pm grant com.azk.azkarak android.permission.POST_NOTIFICATIONS 2>/dev/null
+( while true; do adb shell pm grant com.azk.azkarak android.permission.POST_NOTIFICATIONS >/dev/null 2>&1; sleep 1; done ) &
+NOTIF=$!
 adb shell rm -f /sdcard/fgs-demo.mp4
 : > screenshots/drive_fgs.txt
 ( until grep -q "Installing" screenshots/drive_fgs.txt; do sleep 1; done; sleep 6
-  adb shell screenrecord --time-limit 70 --bit-rate 4000000 /sdcard/fgs-demo.mp4 ) &
+  adb shell screenrecord --time-limit 90 --bit-rate 4000000 /sdcard/fgs-demo.mp4 ) &
 REC=$!
-( until grep -q "Installing" screenshots/drive_fgs.txt; do sleep 1; done; sleep 40
+( until grep -q "Installing" screenshots/drive_fgs.txt; do sleep 1; done; sleep 55
   adb shell cmd statusbar expand-notifications; sleep 7; adb shell cmd statusbar collapse ) &
 SHADE=$!
 flutter drive --driver=test_driver/integration_test.dart \
   --target=integration_test/fgs_demo_test.dart >> screenshots/drive_fgs.txt 2>&1
 wait $REC
-kill $SHADE $GRANT 2>/dev/null
+kill $SHADE $GRANT $NOTIF 2>/dev/null
 adb pull /sdcard/fgs-demo.mp4 screenshots/fgs-demo.mp4 || true
 # keep only captures that are not identical to the first (cheap dedupe by size)
 echo "main=$MAIN overlay=$OVL" > screenshots/status.txt

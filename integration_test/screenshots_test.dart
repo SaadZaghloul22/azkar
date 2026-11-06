@@ -19,6 +19,15 @@ void main() {
     }
   }
 
+  Future<void> tapText(WidgetTester t, String text) async {
+    final f = find.text(text).hitTestable().evaluate().isNotEmpty
+        ? find.text(text).hitTestable().first
+        : find.text(text).first;
+    await t.ensureVisible(f);
+    await t.pump(const Duration(milliseconds: 300));
+    await t.tap(f, warnIfMissed: false);
+  }
+
   testWidgets('main flows render and work', (tester) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
@@ -60,7 +69,7 @@ void main() {
     await binding.takeScreenshot('01_home');
 
     // Morning azkar reader: count the first zekr (Ayat al-Kursi, 1 time).
-    await tester.tap(find.text('أذكار الصباح').first);
+    await tapText(tester, 'أذكار الصباح');
     await settle(tester, 2500);
     expect(find.text('آية الكرسي'), findsWidgets);
     await binding.takeScreenshot('02_reader_morning');
@@ -97,14 +106,14 @@ void main() {
     await tester.tap(find.text('المزيد').last);
     await settle(tester);
     await binding.takeScreenshot('07_more');
-    await tester.tap(find.text('الأذكار التلقائية').first);
+    await tapText(tester, 'الأذكار التلقائية');
     await settle(tester);
     await binding.takeScreenshot('08_auto_azkar');
     navigatorKey.currentState!.pop();
     await settle(tester);
 
     // Dark mode reader.
-    await tester.tap(find.text('الإعدادات').first);
+    await tapText(tester, 'الإعدادات');
     await settle(tester);
     await binding.takeScreenshot('09_settings');
     await tester.tap(find.text('داكن'));
@@ -114,7 +123,7 @@ void main() {
     await tester.tap(find.text('الرئيسية').last);
     await settle(tester);
     await binding.takeScreenshot('10_home_dark');
-    await tester.tap(find.text('أذكار المساء').first);
+    await tapText(tester, 'أذكار المساء');
     await settle(tester, 2500);
     await binding.takeScreenshot('11_reader_dark');
   });
