@@ -31,7 +31,25 @@ flutter drive --driver=test_driver/integration_test.dart \
 wait $REC
 kill $SHADE $GRANT $NOTIF 2>/dev/null
 adb pull /sdcard/fgs-demo.mp4 screenshots/fgs-demo.mp4 || true
+# Scheduled reminder must really be delivered by Android (regression: missing receivers).
+( while true; do adb shell pm grant com.azk.azkarak android.permission.POST_NOTIFICATIONS >/dev/null 2>&1; sleep 1; done ) &
+NOTIF2=$!
+flutter drive --driver=test_driver/integration_test.dart \
+  --target=integration_test/reminder_test.dart > screenshots/drive_reminder.txt 2>&1
+kill $NOTIF2 2>/dev/null
+adb shell input keyevent KEYCODE_HOME
+REM=1
+for i in $(seq 1 18); do
+  sleep 5
+  if adb shell dumpsys notification --noredact | grep -q "pkg=com.azk.azkarak.*id=98"; then REM=0; break; fi
+done
+adb shell dumpsys notification --noredact | grep -A6 "pkg=com.azk.azkarak" > screenshots/reminder_dump.txt
+adb exec-out screencap -p > screenshots/reminder_check.png
+adb shell cmd statusbar expand-notifications; sleep 3
+adb exec-out screencap -p > screenshots/reminder_shade.png
+adb shell cmd statusbar collapse
+echo "reminder=$REM" >> screenshots/status.txt
 # keep only captures that are not identical to the first (cheap dedupe by size)
-echo "main=$MAIN overlay=$OVL" > screenshots/status.txt
+echo "main=$MAIN overlay=$OVL" >> screenshots/status.txt
 tail -5 screenshots/drive.txt; tail -5 screenshots/drive_overlay.txt
-[ $MAIN -eq 0 ] && [ $OVL -eq 0 ]
+[ $MAIN -eq 0 ] && [ $OVL -eq 0 ] && [ $REM -eq 0 ]

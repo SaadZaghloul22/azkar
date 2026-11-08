@@ -44,6 +44,25 @@
                 android:value="Shows short Islamic remembrance (azkar) reminders over other apps at the interval the user chose; the user enables it explicitly and can stop it from the notification." />
         </service>
 
+        <!-- flutter_local_notifications: without these, scheduled reminders
+             (morning/evening/sleep, prayer alerts) are never delivered. -->
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver"
+            android:exported="false" />
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
+            android:exported="false" />
+        <receiver
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
         <receiver
             android:name=".OverlayAlarmReceiver"
             android:exported="false" />
