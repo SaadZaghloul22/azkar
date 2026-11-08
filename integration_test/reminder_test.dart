@@ -18,5 +18,10 @@ void main() {
     await NotificationService.instance.scheduleTest(const Duration(seconds: 20));
     final pending = await NotificationService.instance.plugin.pendingNotificationRequests();
     expect(pending.any((p) => p.id == 98), isTrue);
+    // Keep the app alive (flutter drive force-stops it on exit, which clears alarms)
+    // while tool/emulator_run.sh watches for the delivered notification.
+    for (var i = 0; i < 900; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
   });
 }

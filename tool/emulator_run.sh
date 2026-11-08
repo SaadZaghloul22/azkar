@@ -34,17 +34,21 @@ adb pull /sdcard/fgs-demo.mp4 screenshots/fgs-demo.mp4 || true
 # Scheduled reminder must really be delivered by Android (regression: missing receivers).
 ( while true; do adb shell pm grant com.azk.azkarak android.permission.POST_NOTIFICATIONS >/dev/null 2>&1; sleep 1; done ) &
 NOTIF2=$!
+: > screenshots/drive_reminder.txt
+( until grep -q "Installing" screenshots/drive_reminder.txt; do sleep 1; done
+  for i in $(seq 1 100); do
+    if adb shell dumpsys notification --noredact | grep -q "pkg=com.azk.azkarak.*id=98"; then
+      echo ok > screenshots/reminder_ok; adb exec-out screencap -p > screenshots/reminder_check.png; break
+    fi
+    sleep 1
+  done ) &
+WATCH=$!
 flutter drive --driver=test_driver/integration_test.dart \
-  --target=integration_test/reminder_test.dart > screenshots/drive_reminder.txt 2>&1
+  --target=integration_test/reminder_test.dart >> screenshots/drive_reminder.txt 2>&1
+wait $WATCH
 kill $NOTIF2 2>/dev/null
-adb shell input keyevent KEYCODE_HOME
-REM=1
-for i in $(seq 1 18); do
-  sleep 5
-  if adb shell dumpsys notification --noredact | grep -q "pkg=com.azk.azkarak.*id=98"; then REM=0; break; fi
-done
+REM=1; [ -f screenshots/reminder_ok ] && REM=0
 adb shell dumpsys notification --noredact | grep -A6 "pkg=com.azk.azkarak" > screenshots/reminder_dump.txt
-adb exec-out screencap -p > screenshots/reminder_check.png
 adb shell cmd statusbar expand-notifications; sleep 3
 adb exec-out screencap -p > screenshots/reminder_shade.png
 adb shell cmd statusbar collapse
