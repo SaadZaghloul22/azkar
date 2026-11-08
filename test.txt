@@ -1,0 +1,13 @@
+00:00 +0: loading /home/runner/work/azkar/azkar/test/content_test.dart
+00:00 +0: bundled azkar content has all required sections
+00:00 +1: bundled azkar content every zekr has text, a positive repeat count and a source
+00:00 +2: bundled azkar content ids stay stable and unique (category * 1000 + index)
+00:00 +3: arabic helpers digits
+00:00 +4: arabic helpers normalize strips tashkeel
+00:00 +5: arabic helpers times text
+00:00 +6: daily progress ratio counts azkar parts and tasbeeh
+00:00 +7: prayer times are ordered through the day
+00:00 +8: prayer times offsets shift a prayer
+00:00 +9: prayer times no location gives no times
+00:00 +10: prayer times qibla from Riyadh points west-south-west (~244°)
+00:00 +11: All tests passed!
