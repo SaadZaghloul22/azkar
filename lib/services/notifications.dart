@@ -40,6 +40,40 @@ class NotificationService {
     category: AndroidNotificationCategory.reminder,
   );
 
+  /// One channel per voice: on Android the sound belongs to the channel and cannot be
+  /// changed later, so switching voice switches channel. The notification plays the
+  /// whole recording; swiping it away or "إيقاف الأذان" stops it.
+  static AndroidNotificationDetails adhanDetails(String voice) => AndroidNotificationDetails(
+        'adhan_${voice}_v1',
+        'الأذان - ${adhanVoices[voice]?.name ?? voice}',
+        channelDescription: 'رفع الأذان بصوت كامل عند دخول وقت الصلاة',
+        importance: Importance.max,
+        priority: Priority.max,
+        color: const Color(0xFF0E6B4E),
+        category: AndroidNotificationCategory.alarm,
+        sound: RawResourceAndroidNotificationSound(voice),
+        audioAttributesUsage: AudioAttributesUsage.alarm,
+        playSound: true,
+        enableVibration: true,
+        visibility: NotificationVisibility.public,
+        timeoutAfter: 4 * 60 * 1000,
+        actions: const [
+          AndroidNotificationAction('stop_adhan', 'إيقاف الأذان', cancelNotification: true),
+        ],
+      );
+
+  /// Shows an adhan notification now, so the user can hear exactly what will play.
+  Future<void> testAdhan(String voice) async {
+    await init();
+    await plugin.show(
+      id: 97,
+      title: 'تجربة الأذان',
+      body: 'هكذا سيُرفع الأذان عند دخول وقت الصلاة',
+      notificationDetails: NotificationDetails(android: adhanDetails(voice)),
+      payload: 'prayer',
+    );
+  }
+
   Future<void> init() async {
     if (_ready) return;
     tzdata.initializeTimeZones();
@@ -53,7 +87,10 @@ class NotificationService {
       settings: const InitializationSettings(
         android: AndroidInitializationSettings('@drawable/ic_stat_azkar'),
       ),
-      onDidReceiveNotificationResponse: (r) => tappedPayload.value = r.payload,
+      onDidReceiveNotificationResponse: (r) {
+        if (r.actionId == 'stop_adhan') return; // only silences the adhan
+        tappedPayload.value = r.payload;
+      },
     );
     final launch = await plugin.getNotificationAppLaunchDetails();
     if (launch?.didNotificationLaunchApp ?? false) {
@@ -166,6 +203,7 @@ class NotificationService {
       for (var p = 0; p < slots.length; p++) {
         final s = slots[p];
         if (!(c.alerts[s.key] ?? false) || !s.time.isAfter(now)) continue;
+        final useAdhan = c.adhanFor(s.key);
         await plugin.zonedSchedule(
           id: 1000 + d * 10 + p,
           title: s.key == 'sunrise' ? 'وقت الشروق' : 'حان الآن وقت صلاة ${s.name}',
@@ -173,7 +211,9 @@ class NotificationService {
               ? 'انتهى وقت صلاة الفجر'
               : 'قال ﷺ: «أحب الأعمال إلى الله الصلاة على وقتها»',
           scheduledDate: tz.TZDateTime.from(s.time, tz.local),
-          notificationDetails: const NotificationDetails(android: _prayerChannel),
+          notificationDetails: NotificationDetails(
+            android: useAdhan ? adhanDetails(c.voiceFor(s.key)) : _prayerChannel,
+          ),
           androidScheduleMode: exact
               ? AndroidScheduleMode.exactAllowWhileIdle
               : AndroidScheduleMode.inexactAllowWhileIdle,

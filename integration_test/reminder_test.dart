@@ -18,6 +18,8 @@ void main() {
     await NotificationService.instance.scheduleTest(const Duration(seconds: 20));
     final pending = await NotificationService.instance.plugin.pendingNotificationRequests();
     expect(pending.any((p) => p.id == 98), isTrue);
+    // Adhan notification with the bundled sound (checked via dumpsys by the script).
+    await NotificationService.instance.testAdhan('adhan_2');
     // Keep the app alive (flutter drive force-stops it on exit, which clears alarms)
     // while tool/emulator_run.sh watches for the delivered notification.
     for (var i = 0; i < 900; i++) {

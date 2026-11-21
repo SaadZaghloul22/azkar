@@ -101,6 +101,12 @@ void main() {
     await settle(tester);
     expect(find.text('الصلاة القادمة'), findsOneWidget);
     await binding.takeScreenshot('06_prayer');
+    await tapText(tester, 'الأذان');
+    await settle(tester);
+    expect(find.text('صوت أذان الفجر'), findsOneWidget);
+    await binding.takeScreenshot('06b_adhan');
+    navigatorKey.currentState!.pop();
+    await settle(tester);
 
     // More + floating azkar settings.
     await tester.tap(find.text('المزيد').last);

@@ -14,6 +14,15 @@ class NativeBridge {
 
   static Future<void> openOverlaySettings() => _ch.invokeMethod('openOverlaySettings');
 
+  /// Plays a bundled adhan (res/raw) inside the app for preview; returns false if it failed.
+  static Future<bool> playAdhan(String voice) async =>
+      await _ch.invokeMethod<bool>('playAdhan', {'voice': voice}) ?? false;
+
+  static Future<void> stopAdhan() => _ch.invokeMethod('stopAdhan');
+
+  static Future<bool> isAdhanPlaying() async =>
+      await _ch.invokeMethod<bool>('isAdhanPlaying') ?? false;
+
   static Future<void> openBatterySettings() => _ch.invokeMethod('openBatterySettings');
 
   /// Opens the phone maker's auto-start screen (realme/Oppo/Xiaomi/vivo/Huawei).

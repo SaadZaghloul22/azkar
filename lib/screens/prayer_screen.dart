@@ -11,6 +11,7 @@ import '../services/prayer_service.dart';
 import '../state/app_state.dart';
 import '../state/settings.dart';
 import '../widgets/common.dart';
+import 'adhan_screen.dart';
 import 'qibla_screen.dart';
 
 const _prayerIcons = {
@@ -197,9 +198,22 @@ class _PrayerScreenState extends State<PrayerScreen> {
                               next.time.day == slot.time.day,
                           passed: slot.time.isBefore(_now),
                           alert: c.alerts[slot.key] ?? false,
+                          adhan: c.adhanFor(slot.key),
                           onAlert: (v) => _toggleAlert(slot.key, v),
                         ),
                     ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Card(
+                  child: ListTile(
+                    leading: Icon(Icons.mosque_rounded, color: cs.primary),
+                    title: const Text('الأذان', style: TextStyle(fontWeight: FontWeight.w700)),
+                    subtitle: Text(
+                        '${adhanVoices[c.muezzin]?.name ?? ''} • الفجر: ${adhanVoices[c.fajrMuezzin]?.name ?? ''}'),
+                    trailing: const Icon(Icons.chevron_left_rounded),
+                    onTap: () => Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => const AdhanScreen())),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -230,12 +244,14 @@ class _PrayerRow extends StatelessWidget {
     required this.isNext,
     required this.passed,
     required this.alert,
+    required this.adhan,
     required this.onAlert,
   });
   final PrayerSlot slot;
   final bool isNext;
   final bool passed;
   final bool alert;
+  final bool adhan;
   final ValueChanged<bool> onAlert;
 
   @override
@@ -263,7 +279,9 @@ class _PrayerRow extends StatelessWidget {
               tooltip: alert ? 'إيقاف التنبيه' : 'تفعيل التنبيه',
               onPressed: () => onAlert(!alert),
               icon: Icon(
-                alert ? Icons.notifications_active_rounded : Icons.notifications_off_outlined,
+                !alert
+                    ? Icons.notifications_off_outlined
+                    : (adhan ? Icons.campaign_rounded : Icons.notifications_active_rounded),
                 color: alert ? cs.primary : cs.outline,
               ),
             ),

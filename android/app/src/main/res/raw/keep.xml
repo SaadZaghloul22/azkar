@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adhan sounds are referenced by name from Dart (notification channels / preview). -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@raw/adhan_1,@raw/adhan_2,@raw/adhan_3" />

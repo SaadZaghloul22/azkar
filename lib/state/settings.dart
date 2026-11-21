@@ -100,7 +100,17 @@ class PrayerConfig {
   final double? lat;
   final double? lng;
 
+  /// Adhan voice for the four daytime/evening prayers and for Fajr (keys of [adhanVoices]).
+  final String muezzin;
+  final String fajrMuezzin;
+
+  /// Per prayer: true = play the full adhan, false = a normal notification sound.
+  final Map<String, bool> adhan;
+
   static const prayers = ['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'];
+
+  String voiceFor(String prayer) => prayer == 'fajr' ? fajrMuezzin : muezzin;
+  bool adhanFor(String prayer) => prayer != 'sunrise' && (adhan[prayer] ?? true);
 
   const PrayerConfig({
     this.method = 'umm_al_qura',
@@ -115,6 +125,9 @@ class PrayerConfig {
     },
     this.lat,
     this.lng,
+    this.muezzin = 'adhan_1',
+    this.fajrMuezzin = 'adhan_2',
+    this.adhan = const {},
   });
 
   bool get hasLocation => lat != null && lng != null;
@@ -126,6 +139,9 @@ class PrayerConfig {
     Map<String, bool>? alerts,
     double? lat,
     double? lng,
+    String? muezzin,
+    String? fajrMuezzin,
+    Map<String, bool>? adhan,
   }) =>
       PrayerConfig(
         method: method ?? this.method,
@@ -134,6 +150,9 @@ class PrayerConfig {
         alerts: alerts ?? this.alerts,
         lat: lat ?? this.lat,
         lng: lng ?? this.lng,
+        muezzin: muezzin ?? this.muezzin,
+        fajrMuezzin: fajrMuezzin ?? this.fajrMuezzin,
+        adhan: adhan ?? this.adhan,
       );
 
   Map<String, Object?> toJson() => {
@@ -143,6 +162,9 @@ class PrayerConfig {
         'alerts': alerts,
         'lat': lat,
         'lng': lng,
+        'muezzin': muezzin,
+        'fajrMuezzin': fajrMuezzin,
+        'adhan': adhan,
       };
 
   factory PrayerConfig.fromJson(Map<String, dynamic> j) => PrayerConfig(
@@ -154,8 +176,35 @@ class PrayerConfig {
             const {},
         lat: (j['lat'] as num?)?.toDouble(),
         lng: (j['lng'] as num?)?.toDouble(),
+        muezzin: _validVoice(j['muezzin'], 'adhan_1'),
+        fajrMuezzin: _validVoice(j['fajrMuezzin'], 'adhan_2'),
+        adhan: (j['adhan'] as Map?)?.map((k, v) => MapEntry(k as String, v as bool)) ??
+            const {},
       );
+
+  static String _validVoice(Object? v, String fallback) =>
+      v is String && adhanVoices.containsKey(v) ? v : fallback;
 }
+
+/// Bundled adhan recordings (android/app/src/main/res/raw). Openly licensed,
+/// sources and licences listed in [adhanCredits].
+class AdhanVoice {
+  final String name;
+  final String hint;
+  const AdhanVoice(this.name, this.hint);
+}
+
+const adhanVoices = {
+  'adhan_1': AdhanVoice('الصوت الأول', 'هادئ • ٢:٣٣'),
+  'adhan_2': AdhanVoice('الصوت الثاني', 'مطوّل بمقام جميل • ٢:٣٦'),
+  'adhan_3': AdhanVoice('الصوت الثالث', 'سريع • ١:٢٤'),
+};
+
+const adhanCredits = [
+  'الصوت الأول: «Beautiful adhan» — Adam-synagda، ويكيميديا كومنز، رخصة CC0',
+  'الصوت الثاني: «Azan» — Andrewler، ويكيميديا كومنز، رخصة CC BY-SA 4.0',
+  'الصوت الثالث: «The Adhan» — Aaqib Azeez (رفع: Atcovi)، ويكيميديا كومنز، رخصة CC BY-SA 4.0',
+];
 
 const defaultReminders = [
   ReminderConfig('morning', 'أذكار الصباح', false, 6, 30),

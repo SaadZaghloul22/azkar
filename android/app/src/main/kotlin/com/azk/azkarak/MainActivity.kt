@@ -44,6 +44,20 @@ class MainActivity : FlutterActivity() {
 
     private var pendingUpdate: AppUpdateInfo? = null
 
+    /** In-app preview of a bundled adhan (res/raw); one at a time. */
+    private var preview: android.media.MediaPlayer? = null
+
+    private fun stopPreview() {
+        try { preview?.stop() } catch (_: Exception) { }
+        preview?.release()
+        preview = null
+    }
+
+    override fun onStop() {
+        stopPreview()
+        super.onStop()
+    }
+
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         try { UpdateChecker.scheduleDaily(this) } catch (_: Exception) { }
@@ -74,6 +88,20 @@ class MainActivity : FlutterActivity() {
                             result.success(null)
                         }
                         "isOverlayRunning" -> result.success(OverlayService.running)
+                        "playAdhan" -> {
+                            stopPreview()
+                            val name = call.argument<String>("voice") ?: "adhan_1"
+                            val id = resources.getIdentifier(name, "raw", packageName)
+                            if (id != 0) {
+                                preview = android.media.MediaPlayer.create(this, id)?.apply {
+                                    setOnCompletionListener { stopPreview() }
+                                    start()
+                                }
+                            }
+                            result.success(preview != null)
+                        }
+                        "stopAdhan" -> { stopPreview(); result.success(null) }
+                        "isAdhanPlaying" -> result.success(preview?.isPlaying == true)
                         "openAutostartSettings" -> result.success(openAutostart())
                         "checkUpdate" -> {
                             // Only works for installs from Google Play; elsewhere it just reports none.

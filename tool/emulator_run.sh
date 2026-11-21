@@ -38,7 +38,11 @@ NOTIF2=$!
 ( until grep -q "Installing" screenshots/drive_reminder.txt; do sleep 1; done
   for i in $(seq 1 100); do
     if adb shell dumpsys notification --noredact | grep -q "pkg=com.azk.azkarak.*id=98"; then
-      echo ok > screenshots/reminder_ok; adb exec-out screencap -p > screenshots/reminder_check.png; break
+      echo ok > screenshots/reminder_ok; adb exec-out screencap -p > screenshots/reminder_check.png
+      adb shell dumpsys notification --noredact > screenshots/notif_full.txt
+      adb shell cmd statusbar expand-notifications; sleep 3
+      adb exec-out screencap -p > screenshots/adhan_shade.png
+      adb shell cmd statusbar collapse; break
     fi
     sleep 1
   done ) &
@@ -48,6 +52,12 @@ flutter drive --driver=test_driver/integration_test.dart \
 wait $WATCH
 kill $NOTIF2 2>/dev/null
 REM=1; [ -f screenshots/reminder_ok ] && REM=0
+[ -f screenshots/notif_full.txt ] || adb shell dumpsys notification --noredact > screenshots/notif_full.txt
+ADH=1
+grep -q "pkg=com.azk.azkarak.*id=97" screenshots/notif_full.txt && \
+  grep -q "adhan_2" screenshots/notif_full.txt && ADH=0
+grep -n -A12 "adhan_adhan_2_v1" screenshots/notif_full.txt | head -40 > screenshots/adhan_channel.txt
+echo "adhan=$ADH" >> screenshots/status.txt
 adb shell dumpsys notification --noredact | grep -A6 "pkg=com.azk.azkarak" > screenshots/reminder_dump.txt
 adb shell cmd statusbar expand-notifications; sleep 3
 adb exec-out screencap -p > screenshots/reminder_shade.png
@@ -56,4 +66,4 @@ echo "reminder=$REM" >> screenshots/status.txt
 # keep only captures that are not identical to the first (cheap dedupe by size)
 echo "main=$MAIN overlay=$OVL" >> screenshots/status.txt
 tail -5 screenshots/drive.txt; tail -5 screenshots/drive_overlay.txt
-[ $MAIN -eq 0 ] && [ $OVL -eq 0 ] && [ $REM -eq 0 ]
+[ $MAIN -eq 0 ] && [ $OVL -eq 0 ] && [ $REM -eq 0 ] && [ $ADH -eq 0 ]
