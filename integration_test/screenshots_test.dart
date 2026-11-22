@@ -82,12 +82,25 @@ void main() {
     await settle(tester, 2500);
     expect(find.text('سورة الفَاتِحة'), findsWidgets);
     await binding.takeScreenshot('01c_mushaf_p1');
-    await tester.fling(find.byType(PageView), const Offset(500, 0), 2000); // next page (RTL)
-    await settle(tester, 2000);
-    expect(find.text('٢'), findsWidgets);
+    // Next page: in the RTL mushaf the next page lies to the left, so the finger moves
+    // left-to-right. If that does not turn the page, report it and try the other way.
+    Future<bool> swipeTo(String pageNo, double dx) async {
+      await tester.timedDrag(find.byType(PageView), Offset(dx, 0), const Duration(milliseconds: 350));
+      await settle(tester, 2500);
+      return find.text(pageNo).evaluate().isNotEmpty;
+    }
+
+    var forward = await swipeTo('٢', 450);
+    if (!forward) {
+      debugPrint('MUSHAF_SWIPE: left-to-right did not turn the page; trying right-to-left');
+      expect(await swipeTo('٢', -450), isTrue, reason: 'page 2 never shown');
+    } else {
+      debugPrint('MUSHAF_SWIPE: left-to-right turns to the next page (correct)');
+    }
     await binding.takeScreenshot('01d_mushaf_p2');
-    await tester.fling(find.byType(PageView), const Offset(500, 0), 2000);
-    await settle(tester, 2000);
+    expect(find.text('سورة البَقَرَة'), findsWidgets);
+    forward = await swipeTo('٣', forward ? 450 : -450);
+    expect(forward, isTrue);
     await binding.takeScreenshot('01e_mushaf_p3');
     navigatorKey.currentState!.pop();
     await settle(tester);

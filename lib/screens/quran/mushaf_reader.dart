@@ -89,6 +89,25 @@ class _MushafReaderState extends State<MushafReader> {
 
     return Scaffold(
       backgroundColor: paper,
+      // The wird bar takes its own space under the page so it never covers text.
+      bottomNavigationBar: inWird
+          ? Material(
+              color: Theme.of(context).colorScheme.surface,
+              elevation: 3,
+              child: SafeArea(
+                top: false,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 10),
+                  child: _WirdBar(
+                    today: today,
+                    page: _page,
+                    atEnd: atWirdEnd,
+                    onComplete: () => _completeThrough(today.to),
+                  ),
+                ),
+              ),
+            )
+          : null,
       body: Stack(
         children: [
           GestureDetector(
@@ -145,8 +164,8 @@ class _MushafReaderState extends State<MushafReader> {
               ),
             ),
           ),
-          // ---- bottom: wird bar or page slider
-          if (inWird || _chrome)
+          // ---- bottom: page slider (and "record progress" outside a wird session)
+          if (_chrome)
             Positioned(
               left: 0,
               right: 0,
@@ -161,8 +180,7 @@ class _MushafReaderState extends State<MushafReader> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        if (_chrome)
-                          Row(
+                        Row(
                             children: [
                               Text(arNum(1)),
                               Expanded(
@@ -178,14 +196,7 @@ class _MushafReaderState extends State<MushafReader> {
                               Text(arNum(Quran.pageCount)),
                             ],
                           ),
-                        if (inWird)
-                          _WirdBar(
-                            today: today,
-                            page: _page,
-                            atEnd: atWirdEnd,
-                            onComplete: () => _completeThrough(today.to),
-                          )
-                        else if (w.active && _page > w.progress)
+                        if (!inWird && w.active && _page > w.progress)
                           Align(
                             alignment: AlignmentDirectional.centerStart,
                             child: TextButton.icon(
