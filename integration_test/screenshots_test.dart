@@ -83,25 +83,36 @@ void main() {
     expect(find.text('سورة الفَاتِحة'), findsWidgets);
     await binding.takeScreenshot('01c_mushaf_p1');
     // Next page: in the RTL mushaf the next page lies to the left, so the finger moves
-    // left-to-right. If that does not turn the page, report it and try the other way.
-    Future<bool> swipeTo(String pageNo, double dx) async {
-      await tester.timedDrag(find.byType(PageView), Offset(dx, 0), const Duration(milliseconds: 350));
+    // left-to-right.
+    final pv = find.byType(PageView);
+    debugPrint('MUSHAF_SWIPE: pageviews=${pv.evaluate().length}');
+    double? pageOf() => tester.widget<PageView>(pv.first).controller?.page;
+    Future<void> swipe(double dx) async {
+      final c = tester.getCenter(pv.first);
+      final g = await tester.startGesture(c);
+      for (var i = 1; i <= 12; i++) {
+        await g.moveTo(c + Offset(dx * i / 12, 0));
+        await tester.pump(const Duration(milliseconds: 16));
+      }
+      await g.up();
       await settle(tester, 2500);
-      return find.text(pageNo).evaluate().isNotEmpty;
     }
 
-    var forward = await swipeTo('٢', 450);
-    if (!forward) {
-      debugPrint('MUSHAF_SWIPE: left-to-right did not turn the page; trying right-to-left');
-      expect(await swipeTo('٢', -450), isTrue, reason: 'page 2 never shown');
-    } else {
-      debugPrint('MUSHAF_SWIPE: left-to-right turns to the next page (correct)');
+    debugPrint('MUSHAF_SWIPE: before=${pageOf()}');
+    await swipe(420);
+    debugPrint('MUSHAF_SWIPE: after L->R =${pageOf()}');
+    await binding.takeScreenshot('01d1_after_ltr');
+    if (find.text('٢').evaluate().isEmpty) {
+      await swipe(-420);
+      debugPrint('MUSHAF_SWIPE: after R->L =${pageOf()}');
+      await binding.takeScreenshot('01d2_after_rtl');
     }
+    expect(find.text('٢'), findsWidgets);
     await binding.takeScreenshot('01d_mushaf_p2');
     expect(find.text('سورة البَقَرَة'), findsWidgets);
-    forward = await swipeTo('٣', forward ? 450 : -450);
-    expect(forward, isTrue);
+    await swipe(420);
     await binding.takeScreenshot('01e_mushaf_p3');
+    expect(find.text('٣'), findsWidgets);
     navigatorKey.currentState!.pop();
     await settle(tester);
     await tapText(tester, 'الفهرس');
