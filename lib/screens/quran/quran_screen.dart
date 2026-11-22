@@ -200,22 +200,22 @@ class _WirdSetupState extends State<_WirdSetup> {
         if (w.lastPage > 1) ...[
           const SectionTitle('من أين تبدأ؟'),
           Card(
-            child: Column(
-              children: [
-                RadioListTile<bool>(
-                  value: false,
-                  groupValue: _fromCurrent,
-                  onChanged: (v) => setState(() => _fromCurrent = v!),
-                  title: const Text('من أول المصحف (الفاتحة)'),
-                ),
-                RadioListTile<bool>(
-                  value: true,
-                  groupValue: _fromCurrent,
-                  onChanged: (v) => setState(() => _fromCurrent = v!),
-                  title: Text('من حيث توقفت: صفحة ${arNum(w.lastPage)}'),
-                  subtitle: Text('سورة ${widget.quran.surahOfPage(w.lastPage).name}'),
-                ),
-              ],
+            child: RadioGroup<bool>(
+              groupValue: _fromCurrent,
+              onChanged: (v) => setState(() => _fromCurrent = v ?? false),
+              child: Column(
+                children: [
+                  const RadioListTile<bool>(
+                    value: false,
+                    title: Text('من أول المصحف (الفاتحة)'),
+                  ),
+                  RadioListTile<bool>(
+                    value: true,
+                    title: Text('من حيث توقفت: صفحة ${arNum(w.lastPage)}'),
+                    subtitle: Text('سورة ${widget.quran.surahOfPage(w.lastPage).name}'),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

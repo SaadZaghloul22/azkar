@@ -151,7 +151,7 @@ class Quran {
   }
 
   static final _marks = RegExp('[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]');
-  static String _skeleton(String w) => _marks.replaceAll(w, '').replaceAll('\u0671', 'ا');
+  static String _skeleton(String w) => w.replaceAll(_marks, '').replaceAll('\u0671', 'ا');
   static const _basmalaSkeleton = ['بسم', 'الله', 'الرحمن', 'الرحيم'];
 
   /// Splits a leading basmala off verse 1. Matched on the bare letters of the first
