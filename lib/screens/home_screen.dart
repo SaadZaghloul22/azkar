@@ -9,10 +9,12 @@ import '../core/theme.dart';
 import '../data/models.dart';
 import '../services/prayer_service.dart';
 import '../state/app_state.dart';
+import '../state/quran_wird.dart';
 import '../state/settings.dart';
 import '../widgets/common.dart';
 import 'auto_azkar_screen.dart';
 import 'favorites_screen.dart';
+import 'quran/quran_screen.dart';
 import 'reader_screen.dart';
 import 'share_screen.dart';
 
@@ -35,6 +37,8 @@ class HomeScreen extends StatelessWidget {
           ],
           const SectionTitle('وردك اليومي'),
           _ProgressCard(progress: state.today),
+          const SectionTitle('ورد القرآن'),
+          const _QuranWirdCard(),
           const SectionTitle('وصول سريع'),
           const _QuickGrid(),
         ],
@@ -487,6 +491,83 @@ class _SmallTile extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+/// Today's Quran wird, or an invitation to start a khatma.
+class _QuranWirdCard extends StatelessWidget {
+  const _QuranWirdCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final w = context.watch<QuranWirdController>();
+    final cs = Theme.of(context).colorScheme;
+    final t = w.today();
+    void openTab() => Navigator.push(
+        context, MaterialPageRoute(builder: (_) => const QuranScreen(initialTab: 0)));
+
+    if (t == null) {
+      return Card(
+        child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          leading: CircleAvatar(
+            backgroundColor: cs.primary.withValues(alpha: 0.1),
+            child: Icon(Icons.auto_stories_rounded, color: cs.primary),
+          ),
+          title: const Text('ابدأ ختمة القرآن', style: TextStyle(fontWeight: FontWeight.w800)),
+          subtitle: const Text('حدّد مدة الختمة ونقسّم لك وردًا يوميًا مع تذكير'),
+          trailing: const Icon(Icons.chevron_left_rounded),
+          onTap: openTab,
+        ),
+      );
+    }
+    return Card(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: openTab,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              ProgressRing(
+                value: t.khatmaRatio,
+                size: 58,
+                child: Text('${arNum((t.khatmaRatio * 100).floor())}٪',
+                    style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 13)),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      t.done ? 'أتممت ورد اليوم ✓' : 'ورد اليوم: ص ${arNum(t.from)} ← ${arNum(t.to)}',
+                      style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      t.behind > 0
+                          ? 'اليوم ${arNum(t.day)} من ${arNum(t.days)} • عليك ${arNum(t.behind)} صفحة سابقة'
+                          : 'اليوم ${arNum(t.day)} من ${arNum(t.days)}',
+                      style: TextStyle(color: cs.onSurface.withValues(alpha: 0.7)),
+                    ),
+                  ],
+                ),
+              ),
+              if (!t.done)
+                IconButton.filled(
+                  tooltip: 'اقرأ الآن',
+                  onPressed: () => openMushaf(
+                      context, w.lastPage >= t.from && w.lastPage <= t.to ? w.lastPage : t.from,
+                      wird: true),
+                  icon: const Icon(Icons.play_arrow_rounded),
+                ),
             ],
           ),
         ),

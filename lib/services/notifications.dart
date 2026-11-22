@@ -6,7 +6,9 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../core/arabic.dart';
 import '../data/models.dart';
+import '../state/quran_wird.dart';
 import '../state/settings.dart';
 import 'prayer_service.dart';
 
@@ -61,6 +63,55 @@ class NotificationService {
           AndroidNotificationAction('stop_adhan', 'إيقاف الأذان', cancelNotification: true),
         ],
       );
+
+  /// Daily "ورد القرآن" reminders for the next week, each naming that day's pages.
+  /// Re-run whenever the plan or progress changes and on every app start.
+  Future<void> scheduleQuranWird(QuranWirdController w) async {
+    await init();
+    for (var i = 0; i < 7; i++) {
+      await plugin.cancel(id: 4000 + i);
+    }
+    final plan = w.plan;
+    if (plan == null || !w.remind) return;
+    final exact = await canExact();
+    final now = tz.TZDateTime.now(tz.local);
+    final today = w.today();
+    for (var i = 0; i < 7; i++) {
+      final day = plan.dayIndex(now) + i;
+      if (day >= plan.days) break;
+      if (day < 0) continue;
+      final at = tz.TZDateTime(tz.local, now.year, now.month, now.day, w.remindHour, w.remindMinute)
+          .add(Duration(days: i));
+      if (!at.isAfter(now)) continue;
+      String body;
+      if (i == 0 && today != null) {
+        if (today.done) continue;
+        body = 'وردك اليوم: من صفحة ${arNum(today.from)} إلى ${arNum(today.to)}';
+      } else {
+        body = 'وردك اليوم: من صفحة ${arNum(plan.dayStart(day))} إلى ${arNum(plan.dayEnd(day))}';
+      }
+      await plugin.zonedSchedule(
+        id: 4000 + i,
+        title: 'ورد القرآن • اليوم ${arNum(day + 1)} من ${arNum(plan.days)}',
+        body: body,
+        scheduledDate: at,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'quran_wird',
+            'ورد القرآن',
+            channelDescription: 'تذكير يومي بورد القرآن',
+            importance: Importance.high,
+            priority: Priority.high,
+            color: Color(0xFF0E6B4E),
+          ),
+        ),
+        androidScheduleMode: exact
+            ? AndroidScheduleMode.exactAllowWhileIdle
+            : AndroidScheduleMode.inexactAllowWhileIdle,
+        payload: 'quran_wird',
+      );
+    }
+  }
 
   /// Shows an adhan notification now, so the user can hear exactly what will play.
   Future<void> testAdhan(String voice) async {

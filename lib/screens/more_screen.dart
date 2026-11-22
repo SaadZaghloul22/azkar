@@ -4,6 +4,7 @@ import '../services/native_bridge.dart';
 import '../widgets/common.dart';
 import 'about_screen.dart';
 import 'adhan_screen.dart';
+import 'quran/quran_screen.dart';
 import 'auto_azkar_screen.dart';
 import 'custom_azkar_screen.dart';
 import 'favorites_screen.dart';
@@ -44,6 +45,13 @@ class MoreScreen extends StatelessWidget {
               subtitle: const Text('الصباح والمساء والنوم والاستغفار'),
               trailing: const Icon(Icons.chevron_left_rounded),
               onTap: () => go(const RemindersScreen()),
+            ),
+            ListTile(
+              leading: const Icon(Icons.auto_stories_rounded),
+              title: const Text('المصحف'),
+              subtitle: const Text('القرآن الكريم وورد الختمة اليومي'),
+              trailing: const Icon(Icons.chevron_left_rounded),
+              onTap: () => go(const QuranScreen(initialTab: 1)),
             ),
             ListTile(
               leading: const Icon(Icons.mosque_rounded),

@@ -68,6 +68,36 @@ void main() {
     expect(find.text('ذكر اليوم'), findsWidgets);
     await binding.takeScreenshot('01_home');
 
+    // Quran: start a 30-day khatma, read today's wird, check the index.
+    await tapText(tester, 'ابدأ ختمة القرآن');
+    await settle(tester, 2500);
+    expect(find.text('ابدأ ختمة جديدة'), findsOneWidget);
+    await binding.takeScreenshot('01a_quran_wird_setup');
+    await tapText(tester, 'ابدأ الختمة');
+    await settle(tester, 2000);
+    expect(find.text('اليوم ١ من ٣٠'), findsOneWidget);
+    expect(find.text('من صفحة ١ إلى صفحة ٢١'), findsOneWidget);
+    await binding.takeScreenshot('01b_quran_wird_active');
+    await tapText(tester, 'ابدأ ورد اليوم');
+    await settle(tester, 2500);
+    expect(find.text('سورة الفَاتِحة'), findsWidgets);
+    await binding.takeScreenshot('01c_mushaf_p1');
+    await tester.fling(find.byType(PageView), const Offset(500, 0), 2000); // next page (RTL)
+    await settle(tester, 2000);
+    expect(find.text('٢'), findsWidgets);
+    await binding.takeScreenshot('01d_mushaf_p2');
+    await tester.fling(find.byType(PageView), const Offset(500, 0), 2000);
+    await settle(tester, 2000);
+    await binding.takeScreenshot('01e_mushaf_p3');
+    navigatorKey.currentState!.pop();
+    await settle(tester);
+    await tapText(tester, 'الفهرس');
+    await settle(tester);
+    expect(find.text('سورة البَقَرَة'), findsWidgets);
+    await binding.takeScreenshot('01f_quran_index');
+    navigatorKey.currentState!.pop();
+    await settle(tester);
+
     // Morning azkar reader: count the first zekr (Ayat al-Kursi, 1 time).
     await tapText(tester, 'أذكار الصباح');
     await settle(tester, 2500);

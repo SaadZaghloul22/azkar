@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/arabic.dart';
 import '../widgets/common.dart';
 
-const appVersion = '2.0.5';
+const appVersion = '2.1.0';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -45,6 +45,19 @@ class AboutScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Text(
                 'نصوص الأذكار مأخوذة من كتاب «حصن المسلم» للشيخ سعيد بن علي القحطاني ومن كتب السنة (الصحيحين والسنن)، والآيات من المصحف الشريف. يُذكر مع كل ذكر مصدره. يُذكر فضل الذكر فقط عند وروده في حديث، مع تخريجه.\n\nإن وجدت خطأً في أي نص فنرجو إبلاغنا لتصحيحه.',
+                style: TextStyle(height: 1.8, color: cs.onSurface.withValues(alpha: 0.8)),
+              ),
+            ),
+          ),
+          const SectionTitle('المصحف والأذان'),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                'نص القرآن الكريم: نص التنزيل العثماني (الإصدار 1.1) من مشروع التنزيل tanzil.net، منقول كما هو دون أي تعديل، برخصة المشاع الإبداعي (نسب المصنف 3.0). '
+                'تقسيم الصفحات والأجزاء حسب مصحف المدينة النبوية (٦٠٤ صفحة) من مكتبة quran-meta (رخصة MIT).\n\n'
+                'خط المصحف: Amiri Quran — حقوق النشر 2010-2022 لمؤلفي مشروع Amiri، برخصة الخطوط المفتوحة SIL OFL 1.1.\n\n'
+                'أصوات الأذان: تسجيلات من ويكيميديا كومنز (CC0 و CC BY-SA 4.0)، وتفاصيلها في شاشة الأذان.',
                 style: TextStyle(height: 1.8, color: cs.onSurface.withValues(alpha: 0.8)),
               ),
             ),
