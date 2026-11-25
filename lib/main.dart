@@ -10,6 +10,7 @@ import 'services/background.dart';
 import 'services/notifications.dart';
 import 'state/app_state.dart';
 import 'state/quran_wird.dart';
+import 'state/ramadan.dart';
 import 'state/settings.dart';
 
 Future<void> main() async {
@@ -22,6 +23,7 @@ Future<void> main() async {
   final db = await AppDatabase.open();
   final state = AppState(db, settings);
   final quranWird = QuranWirdController(prefs);
+  final ramadan = RamadanController(prefs);
   await state.load();
 
   runApp(
@@ -30,6 +32,7 @@ Future<void> main() async {
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider.value(value: state),
         ChangeNotifierProvider.value(value: quranWird),
+        ChangeNotifierProvider.value(value: ramadan),
       ],
       child: const AzkarApp(),
     ),
@@ -44,6 +47,7 @@ Future<void> main() async {
       await registerBackgroundWork();
       await state.syncOverlay();
       await NotificationService.instance.scheduleQuranWird(quranWird);
+      await NotificationService.instance.scheduleRamadan(ramadan, settings.prayer);
     } catch (e) {
       debugPrint('startup sync failed: $e');
     }

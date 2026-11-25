@@ -5,6 +5,7 @@ import '../widgets/common.dart';
 import 'about_screen.dart';
 import 'adhan_screen.dart';
 import 'quran/quran_screen.dart';
+import 'ramadan_screen.dart';
 import 'auto_azkar_screen.dart';
 import 'custom_azkar_screen.dart';
 import 'favorites_screen.dart';
@@ -45,6 +46,13 @@ class MoreScreen extends StatelessWidget {
               subtitle: const Text('الصباح والمساء والنوم والاستغفار'),
               trailing: const Icon(Icons.chevron_left_rounded),
               onTap: () => go(const RemindersScreen()),
+            ),
+            ListTile(
+              leading: const Icon(Icons.brightness_3_rounded),
+              title: const Text('رمضان'),
+              subtitle: const Text('الإمساكية والسحور والإفطار وختمة رمضان'),
+              trailing: const Icon(Icons.chevron_left_rounded),
+              onTap: () => go(const RamadanScreen()),
             ),
             ListTile(
               leading: const Icon(Icons.auto_stories_rounded),

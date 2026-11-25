@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:azkarak/app.dart' show navigatorKey;
 import 'package:azkarak/main.dart' as app;
+import 'package:azkarak/screens/ramadan_screen.dart';
 import 'package:azkarak/state/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -178,6 +179,22 @@ void main() {
     await settle(tester);
     expect(find.text('صوت أذان الفجر'), findsOneWidget);
     await binding.takeScreenshot('06b_adhan');
+    navigatorKey.currentState!.push(MaterialPageRoute(builder: (_) => const RamadanScreen()));
+    await settle(tester, 2000);
+    expect(find.textContaining('رمضان'), findsWidgets);
+    await binding.takeScreenshot('06c_ramadan_before');
+    navigatorKey.currentState!.pop();
+    await settle(tester);
+    navigatorKey.currentState!.push(MaterialPageRoute(
+        builder: (_) => RamadanScreen(debugNow: DateTime(2027, 2, 20, 15, 30))));
+    await settle(tester, 2000);
+    expect(find.text('اليوم ١٣ من رمضان'), findsOneWidget);
+    await binding.takeScreenshot('06d_ramadan_day13');
+    await tester.drag(find.byType(ListView).last, const Offset(0, -900));
+    await settle(tester, 1500);
+    await binding.takeScreenshot('06e_ramadan_imsakiya');
+    navigatorKey.currentState!.pop();
+    await settle(tester);
     navigatorKey.currentState!.pop();
     await settle(tester);
 

@@ -9,6 +9,7 @@ import 'screens/home_screen.dart';
 import 'screens/more_screen.dart';
 import 'screens/prayer_screen.dart';
 import 'screens/quran/quran_screen.dart';
+import 'screens/ramadan_screen.dart';
 import 'screens/reader_screen.dart';
 import 'screens/splash_screen.dart';
 import 'screens/tasbih_screen.dart';
@@ -132,6 +133,8 @@ class _HomeShellState extends State<HomeShell> {
       HomeShell.tab.value = 2;
     } else if (payload == 'prayer') {
       HomeShell.tab.value = 3;
+    } else if (payload == 'ramadan') {
+      navigatorKey.currentState?.push(MaterialPageRoute(builder: (_) => const RamadanScreen()));
     } else if (payload == 'kahf') {
       final ctx = navigatorKey.currentContext;
       if (ctx != null) openKahf(ctx);

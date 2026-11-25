@@ -10,11 +10,13 @@ import '../data/models.dart';
 import '../services/prayer_service.dart';
 import '../state/app_state.dart';
 import '../state/quran_wird.dart';
+import '../state/ramadan.dart';
 import '../state/settings.dart';
 import '../widgets/common.dart';
 import 'auto_azkar_screen.dart';
 import 'favorites_screen.dart';
 import 'quran/quran_screen.dart';
+import 'ramadan_screen.dart';
 import 'reader_screen.dart';
 import 'share_screen.dart';
 
@@ -37,6 +39,7 @@ class HomeScreen extends StatelessWidget {
           ],
           const SectionTitle('وردك اليومي'),
           _ProgressCard(progress: state.today),
+          const _RamadanCard(),
           const SectionTitle('ورد القرآن'),
           const _QuranWirdCard(),
           const SectionTitle('وصول سريع'),
@@ -570,6 +573,47 @@ class _QuranWirdCard extends StatelessWidget {
                 ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+/// Shown from 30 days before Ramadan until its last day.
+class _RamadanCard extends StatelessWidget {
+  const _RamadanCard();
+  @override
+  Widget build(BuildContext context) {
+    final r = context.watch<RamadanController>();
+    final prayer = context.watch<SettingsController>().prayer;
+    final now = DateTime.now();
+    final info = r.info(now);
+    if (!info.inRamadan && info.daysUntil > 30) return const SizedBox.shrink();
+    final cs = Theme.of(context).colorScheme;
+    String sub;
+    if (info.inRamadan) {
+      final maghrib = PrayerService.timesFor(prayer, now)?.firstWhere((s) => s.key == 'maghrib').time;
+      sub = maghrib == null ? 'حدّد موقعك لمعرفة موعد الإفطار' : 'الإفطار ${timeText(maghrib)}';
+    } else {
+      sub = 'يبدأ ${gregorianDateText(info.start)}';
+    }
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: Card(
+        color: cs.primaryContainer,
+        child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          leading: const Icon(Icons.brightness_3_rounded, color: AppColors.gold, size: 32),
+          title: Text(
+            info.inRamadan
+                ? 'اليوم ${arNum(info.day!)} من رمضان'
+                : (info.daysUntil == 1 ? 'رمضان غدًا' : 'باقي ${arNum(info.daysUntil)} يومًا على رمضان'),
+            style: const TextStyle(fontWeight: FontWeight.w800),
+          ),
+          subtitle: Text(sub),
+          trailing: const Icon(Icons.chevron_left_rounded),
+          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RamadanScreen())),
         ),
       ),
     );

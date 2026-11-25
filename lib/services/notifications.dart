@@ -9,6 +9,7 @@ import 'package:timezone/timezone.dart' as tz;
 import '../core/arabic.dart';
 import '../data/models.dart';
 import '../state/quran_wird.dart';
+import '../state/ramadan.dart';
 import '../state/settings.dart';
 import 'prayer_service.dart';
 
@@ -145,6 +146,73 @@ class NotificationService {
       matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
       payload: 'kahf',
     );
+  }
+
+  /// Ramadan: suhoor reminder before Fajr and iftar at Maghrib for the coming days,
+  /// plus the first night (crescent du'a). Re-run on start and on any change.
+  Future<void> scheduleRamadan(RamadanController r, PrayerConfig prayer) async {
+    await init();
+    for (var i = 0; i < 16; i++) {
+      await plugin.cancel(id: 4200 + i);
+    }
+    await plugin.cancel(id: 4220);
+    if (!prayer.hasLocation) return;
+    final now = DateTime.now();
+    final info = r.info(now);
+    final exact = await canExact();
+    final mode = exact ? AndroidScheduleMode.exactAllowWhileIdle : AndroidScheduleMode.inexactAllowWhileIdle;
+    const details = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'ramadan',
+        'رمضان',
+        channelDescription: 'تذكير السحور والإفطار في رمضان',
+        importance: Importance.high,
+        priority: Priority.high,
+        color: Color(0xFF0E6B4E),
+        styleInformation: BigTextStyleInformation(''),
+      ),
+    );
+    Future<void> at(int id, DateTime when, String title, String body) async {
+      if (!when.isAfter(now)) return;
+      await plugin.zonedSchedule(
+        id: id,
+        title: title,
+        body: body,
+        scheduledDate: tz.TZDateTime.from(when, tz.local),
+        notificationDetails: details,
+        androidScheduleMode: mode,
+        payload: 'ramadan',
+      );
+    }
+
+    // The night before 1 Ramadan, at Maghrib.
+    if (r.crescent && !info.inRamadan && info.daysUntil >= 1 && info.daysUntil <= 30) {
+      final eve = info.start.subtract(const Duration(days: 1));
+      final maghrib = PrayerService.timesFor(prayer, eve)?.firstWhere((s) => s.key == 'maghrib').time;
+      if (maghrib != null) {
+        await at(4220, maghrib, 'الليلة أول ليالي رمضان',
+            'اللهم أهلّه علينا باليُمن والإيمان، والسلامة والإسلام، ربي وربك الله. مبارك عليكم الشهر');
+      }
+    }
+    // Next 8 days of Ramadan (re-scheduled each time the app starts).
+    for (var i = 0; i < 8; i++) {
+      final date = DateTime(now.year, now.month, now.day).add(Duration(days: i));
+      final n = date.difference(info.start).inDays + 1;
+      if (n < 1 || n > info.days) continue;
+      final times = PrayerService.timesFor(prayer, date);
+      if (times == null) continue;
+      final fajr = times.firstWhere((s) => s.key == 'fajr').time;
+      final maghrib = times.firstWhere((s) => s.key == 'maghrib').time;
+      if (r.suhoor) {
+        await at(4200 + i * 2, fajr.subtract(Duration(minutes: r.suhoorMinutes)),
+            'السحور • ${arNum(n)} رمضان',
+            'باقي ${arNum(r.suhoorMinutes)} دقيقة على أذان الفجر (${timeText(fajr)}). «تسحّروا فإن في السحور بركة»');
+      }
+      if (r.iftar) {
+        await at(4201 + i * 2, maghrib, 'حان موعد الإفطار • ${arNum(n)} رمضان',
+            'ذهب الظمأ، وابتلّت العروق، وثبت الأجر إن شاء الله');
+      }
+    }
   }
 
   /// Shows an adhan notification now, so the user can hear exactly what will play.
