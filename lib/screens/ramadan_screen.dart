@@ -433,7 +433,7 @@ class _Imsakiya extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
             child: Row(children: [
-              cell('اليوم', style: head, flex: 1),
+              cell('يوم', style: head, flex: 1),
               cell('التاريخ', style: head, flex: 3),
               cell('الإمساك', style: head),
               cell('الفجر', style: head),
