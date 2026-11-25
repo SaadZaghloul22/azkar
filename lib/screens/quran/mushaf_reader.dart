@@ -639,14 +639,32 @@ class _PageBody extends StatelessWidget {
     return out;
   }
 
-  static TextSpan span(List<PageAyah> ayat, double size, Color ink, Color accent) => TextSpan(
+  static TextSpan span(
+    List<PageAyah> ayat,
+    double size,
+    Color ink,
+    Color accent, {
+    Set<int> marked = const {},
+    int? selected,
+    GestureRecognizer? Function(PageAyah)? recognizer,
+  }) =>
+      TextSpan(
         style: TextStyle(fontFamily: _quranFont, fontSize: size, height: _lineHeight, color: ink),
         children: [
           for (final a in ayat) ...[
-            TextSpan(text: '${a.text} '),
-            // End-of-ayah sign followed by its number: Amiri Quran draws the number
-            // inside the ornament.
-            TextSpan(text: '۝${arNum(a.number)} ', style: TextStyle(color: accent)),
+            TextSpan(
+              text: '${a.text} ',
+              recognizer: recognizer?.call(a),
+              // Background only: layout (and so the fitted size) does not change.
+              style: a.id == selected
+                  ? TextStyle(backgroundColor: AppColors.gold.withValues(alpha: 0.30))
+                  : marked.contains(a.id)
+                      ? TextStyle(backgroundColor: AppColors.emerald.withValues(alpha: 0.10))
+                      : null,
+            ),
+            // End-of-ayah sign (U+06DD) followed by its number: Amiri Quran draws the
+            // number inside the ornament.
+            TextSpan(text: '\u06DD${arNum(a.number)} ', style: TextStyle(color: accent)),
           ],
         ],
       );
