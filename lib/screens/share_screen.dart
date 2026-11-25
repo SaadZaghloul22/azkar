@@ -28,8 +28,12 @@ const _backgrounds = [
 
 /// Turns a zekr into a shareable image (WhatsApp and others) using the system share sheet.
 class ShareScreen extends StatefulWidget {
-  const ShareScreen({super.key, required this.zekr});
+  const ShareScreen({super.key, required this.zekr, this.fontFamily = 'Amiri', this.lineHeight = 1.9});
   final Zekr zekr;
+
+  /// Font of the main text: Amiri for azkar, AmiriQuran for a verse of the mushaf.
+  final String fontFamily;
+  final double lineHeight;
   @override
   State<ShareScreen> createState() => _ShareScreenState();
 }
@@ -116,9 +120,9 @@ class _ShareScreenState extends State<ShareScreen> {
                                       z.content,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontFamily: 'Amiri',
+                                        fontFamily: widget.fontFamily,
                                         fontSize: _size,
-                                        height: 1.9,
+                                        height: widget.lineHeight,
                                         color: bg.text,
                                       ),
                                     ),

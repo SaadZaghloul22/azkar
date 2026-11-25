@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+import '../core/arabic.dart';
+
 /// The Quran text (Tanzil Uthmani 1.1, verbatim) laid out on the 604 pages of the
 /// Madinah mushaf. Built by tool/build_quran.py; loaded once, off the UI thread,
 /// and indexed so every lookup the reader needs is O(1) or a binary search.
@@ -148,6 +150,46 @@ class Quran {
       ));
     }
     return out;
+  }
+
+  // ---------------------------------------------------------------- search
+
+  List<String>? _searchIndex;
+  Future<List<String>>? _indexing;
+
+  /// Letters only, tuned for searching Uthmani text with ordinary spelling: the
+  /// Uthmani wāw-for-alef (الصلوٰة) becomes alef, then diacritics are dropped and
+  /// letter forms unified (normalizeArabic), then every alef is dropped so that
+  /// «العالمين» finds «ٱلْعَـٰلَمِينَ» (written without the alef).
+  static String searchKey(String s) =>
+      normalizeArabic(s.replaceAll('و\u0670', 'ا')).replaceAll('ا', '');
+
+  static List<String> _buildIndex(List<String> ayat) => [for (final a in ayat) searchKey(a)];
+
+  /// Ayah ids whose text contains [query] (at least 2 letters), in mushaf order,
+  /// with exact-spelling matches first. The index is built once, off the UI thread.
+  Future<List<int>> search(String query) async {
+    final key = searchKey(query);
+    if (key.replaceAll(' ', '').length < 2) return const [];
+    final index = _searchIndex ??= await (_indexing ??= compute(_buildIndex, _ayat));
+    final exactKey = normalizeArabic(query);
+    final exact = <int>[], loose = <int>[];
+    for (var i = 0; i < index.length; i++) {
+      if (!index[i].contains(key)) continue;
+      (normalizeArabic(_ayat[i]).contains(exactKey) ? exact : loose).add(i + 1);
+    }
+    return [...exact, ...loose];
+  }
+
+  /// "سورة البقرة: ٢٥٥" style reference for an ayah.
+  String reference(int ayahId) => '${surahs[surahOf(ayahId) - 1].name}: ${arNum(ayahNumber(ayahId))}';
+
+  /// Verse text for copying/sharing: verse 1 without the basmala prefix.
+  String shareText(int ayahId) {
+    final t = ayahText(ayahId);
+    final s = surahOf(ayahId);
+    if (ayahNumber(ayahId) == 1 && s != 1 && s != 9) return splitBasmala(t)?.$2 ?? t;
+    return t;
   }
 
   static final _marks = RegExp('[\u064B-\u065F\u0670\u06D6-\u06ED\u0640]');

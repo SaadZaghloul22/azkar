@@ -10,6 +10,7 @@ import '../../services/notifications.dart';
 import '../../state/quran_wird.dart';
 import '../../widgets/common.dart';
 import 'mushaf_reader.dart';
+import 'quran_search.dart';
 
 /// المصحف: three tabs — ورد القرآن (the khatma), الفهرس (surahs / juz), العلامات.
 class QuranScreen extends StatefulWidget {
@@ -31,6 +32,17 @@ class _QuranScreenState extends State<QuranScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('المصحف'),
+          actions: [
+            IconButton(
+              tooltip: 'البحث في القرآن',
+              icon: const Icon(Icons.search_rounded),
+              onPressed: () async {
+                final q = await _quran;
+                if (!context.mounted) return;
+                Navigator.push(context, MaterialPageRoute(builder: (_) => QuranSearchScreen(quran: q)));
+              },
+            ),
+          ],
           bottom: const TabBar(tabs: [
             Tab(text: 'ورد القرآن'),
             Tab(text: 'الفهرس'),
@@ -58,13 +70,22 @@ class _QuranScreenState extends State<QuranScreen> {
 }
 
 /// Opens the reader at [page]; loads the Quran first if needed.
-Future<void> openMushaf(BuildContext context, int page, {bool wird = false}) async {
+Future<void> openMushaf(BuildContext context, int page, {bool wird = false, int? highlightAyah}) async {
   final q = await Quran.load();
   if (!context.mounted) return;
   await Navigator.push(
     context,
-    MaterialPageRoute(builder: (_) => MushafReader(quran: q, initialPage: page, wirdMode: wird)),
+    MaterialPageRoute(
+      builder: (_) => MushafReader(quran: q, initialPage: page, wirdMode: wird, highlightAyah: highlightAyah),
+    ),
   );
+}
+
+/// Opens Surat al-Kahf (from the Friday reminder).
+Future<void> openKahf(BuildContext context) async {
+  final q = await Quran.load();
+  if (!context.mounted) return;
+  await openMushaf(context, q.surahStartPage(18));
 }
 
 class _Skeleton extends StatelessWidget {
@@ -219,7 +240,7 @@ class _WirdSetupState extends State<_WirdSetup> {
             ),
           ),
         ],
-        const SectionTitle('التذكير اليومي'),
+        const SectionTitle('التذكيرات'),
         _ReminderCard(),
         const SizedBox(height: 20),
         FilledButton.icon(
@@ -267,6 +288,36 @@ class _ReminderCard extends StatelessWidget {
                 );
                 if (picked == null) return;
                 await w.setReminder(on: true, hour: picked.hour, minute: picked.minute);
+                unawaited(NotificationService.instance.scheduleQuranWird(w));
+              },
+            ),
+          const Divider(height: 1),
+          SwitchListTile(
+            secondary: const Icon(Icons.wb_sunny_outlined),
+            title: const Text('سورة الكهف يوم الجمعة'),
+            subtitle: Text(w.kahf
+                ? 'كل جمعة الساعة ${timeText(DateTime(2000, 1, 1, w.kahfHour, w.kahfMinute))}'
+                : 'تذكير أسبوعي يفتح السورة مباشرة'),
+            value: w.kahf,
+            onChanged: (v) async {
+              await w.setKahf(on: v);
+              if (v) await NotificationService.instance.requestPermission();
+              unawaited(NotificationService.instance.scheduleQuranWird(w));
+            },
+          ),
+          if (w.kahf)
+            ListTile(
+              leading: const Icon(Icons.schedule_rounded),
+              title: const Text('وقت تذكير الكهف'),
+              trailing: Text(timeText(DateTime(2000, 1, 1, w.kahfHour, w.kahfMinute)),
+                  style: const TextStyle(fontWeight: FontWeight.w700)),
+              onTap: () async {
+                final picked = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay(hour: w.kahfHour, minute: w.kahfMinute),
+                );
+                if (picked == null) return;
+                await w.setKahf(on: true, hour: picked.hour, minute: picked.minute);
                 unawaited(NotificationService.instance.scheduleQuranWird(w));
               },
             ),
@@ -409,7 +460,7 @@ class _ActiveWird extends StatelessWidget {
             Expanded(child: _Stat(icon: Icons.workspace_premium_rounded, value: arNum(w.khatmas), label: 'ختمات')),
           ],
         ),
-        const SectionTitle('التذكير اليومي'),
+        const SectionTitle('التذكيرات'),
         _ReminderCard(),
         const SizedBox(height: 12),
         TextButton.icon(
@@ -595,29 +646,50 @@ class _BookmarksTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final w = context.watch<QuranWirdController>();
     final pages = w.bookmarks.toList()..sort();
-    if (pages.isEmpty) {
+    final ayat = w.ayahMarks.toList()..sort();
+    if (pages.isEmpty && ayat.isEmpty) {
       return const EmptyState(
         icon: Icons.bookmark_border_rounded,
-        text: 'لا توجد علامات بعد.\nأثناء القراءة اضغط على الصفحة ثم على أيقونة العلامة.',
+        text: 'لا توجد علامات بعد.\nاضغط مطوّلًا على أي آية لوضع علامة عليها، أو اضغط على الصفحة ثم أيقونة العلامة.',
       );
     }
-    return ListView.builder(
+    return ListView(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      itemCount: pages.length,
-      itemBuilder: (context, i) {
-        final p = pages[i];
-        return ListTile(
-          leading: const Icon(Icons.bookmark_rounded, color: AppColors.gold),
-          title: Text('صفحة ${arNum(p)}', style: const TextStyle(fontWeight: FontWeight.w700)),
-          subtitle: Text('سورة ${quran.surahOfPage(p).name} • الجزء ${arNum(quran.juzOfPage(p))}'),
-          trailing: IconButton(
-            tooltip: 'حذف العلامة',
-            icon: const Icon(Icons.delete_outline_rounded),
-            onPressed: () => w.toggleBookmark(p),
-          ),
-          onTap: () => openMushaf(context, p),
-        );
-      },
+      children: [
+        if (ayat.isNotEmpty) ...[
+          const Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: SectionTitle('الآيات')),
+          for (final id in ayat)
+            ListTile(
+              leading: const Icon(Icons.format_quote_rounded, color: AppColors.gold),
+              title: Text(quran.shareText(id),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontFamily: 'AmiriQuran', fontSize: 17, height: 1.8)),
+              subtitle: Text('سورة ${quran.reference(id)} • ص ${arNum(quran.pageOf(id))}'),
+              trailing: IconButton(
+                tooltip: 'حذف العلامة',
+                icon: const Icon(Icons.delete_outline_rounded),
+                onPressed: () => w.toggleAyahMark(id),
+              ),
+              onTap: () => openMushaf(context, quran.pageOf(id), highlightAyah: id),
+            ),
+        ],
+        if (pages.isNotEmpty) ...[
+          const Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: SectionTitle('الصفحات')),
+          for (final p in pages)
+            ListTile(
+              leading: const Icon(Icons.bookmark_rounded, color: AppColors.gold),
+              title: Text('صفحة ${arNum(p)}', style: const TextStyle(fontWeight: FontWeight.w700)),
+              subtitle: Text('سورة ${quran.surahOfPage(p).name} • الجزء ${arNum(quran.juzOfPage(p))}'),
+              trailing: IconButton(
+                tooltip: 'حذف العلامة',
+                icon: const Icon(Icons.delete_outline_rounded),
+                onPressed: () => w.toggleBookmark(p),
+              ),
+              onTap: () => openMushaf(context, p),
+            ),
+        ],
+      ],
     );
   }
 }

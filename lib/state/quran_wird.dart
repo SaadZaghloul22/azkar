@@ -126,7 +126,11 @@ class QuranWirdController extends ChangeNotifier {
   KhatmaPlan? _plan;
   int _progress = 0; // last page completed in the current khatma
   int lastPage = 1; // last page open in the reader
-  final Set<int> bookmarks = {};
+  final Set<int> bookmarks = {}; // pages
+  final Set<int> ayahMarks = {}; // ayah ids
+  bool kahf = true; // Friday reminder for Surat al-Kahf
+  int kahfHour = 10;
+  int kahfMinute = 0;
   int khatmas = 0;
   bool remind = true;
 
@@ -149,6 +153,12 @@ class QuranWirdController extends ChangeNotifier {
       _progress = ((j['progress'] as int?) ?? 0).clamp(0, KhatmaPlan.lastPage);
       lastPage = ((j['lastPage'] as int?) ?? 1).clamp(1, KhatmaPlan.lastPage);
       bookmarks.addAll(((j['bookmarks'] as List?) ?? const []).whereType<int>());
+      ayahMarks.addAll(((j['ayahMarks'] as List?) ?? const [])
+          .whereType<int>()
+          .where((id) => id >= 1 && id <= 6236));
+      kahf = (j['kahf'] as bool?) ?? true;
+      kahfHour = ((j['kahfHour'] as int?) ?? 10).clamp(0, 23);
+      kahfMinute = ((j['kahfMinute'] as int?) ?? 0).clamp(0, 59);
       khatmas = (j['khatmas'] as int?) ?? 0;
       remind = (j['remind'] as bool?) ?? true;
       remindHour = ((j['remindHour'] as int?) ?? 20).clamp(0, 23);
@@ -180,6 +190,10 @@ class QuranWirdController extends ChangeNotifier {
         'progress': _progress,
         'lastPage': lastPage,
         'bookmarks': bookmarks.toList()..sort(),
+        'ayahMarks': ayahMarks.toList()..sort(),
+        'kahf': kahf,
+        'kahfHour': kahfHour,
+        'kahfMinute': kahfMinute,
         'khatmas': khatmas,
         'remind': remind,
         'remindHour': remindHour,
@@ -271,6 +285,20 @@ class QuranWirdController extends ChangeNotifier {
 
   Future<void> toggleBookmark(int page) async {
     if (!bookmarks.remove(page)) bookmarks.add(page);
+    await _save();
+    notifyListeners();
+  }
+
+  Future<void> toggleAyahMark(int ayahId) async {
+    if (!ayahMarks.remove(ayahId)) ayahMarks.add(ayahId);
+    await _save();
+    notifyListeners();
+  }
+
+  Future<void> setKahf({required bool on, int? hour, int? minute}) async {
+    kahf = on;
+    if (hour != null) kahfHour = hour;
+    if (minute != null) kahfMinute = minute;
     await _save();
     notifyListeners();
   }

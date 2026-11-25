@@ -71,6 +71,7 @@ class NotificationService {
     for (var i = 0; i < 7; i++) {
       await plugin.cancel(id: 4000 + i);
     }
+    await _scheduleKahf(w);
     final plan = w.plan;
     if (plan == null || !w.remind) return;
     final exact = await canExact();
@@ -111,6 +112,39 @@ class NotificationService {
         payload: 'quran_wird',
       );
     }
+  }
+
+  /// Weekly Friday reminder to read Surat al-Kahf (opens it directly).
+  Future<void> _scheduleKahf(QuranWirdController w) async {
+    await plugin.cancel(id: 4100);
+    if (!w.kahf) return;
+    final now = tz.TZDateTime.now(tz.local);
+    var at = tz.TZDateTime(tz.local, now.year, now.month, now.day, w.kahfHour, w.kahfMinute);
+    while (at.weekday != DateTime.friday || !at.isAfter(now)) {
+      at = at.add(const Duration(days: 1));
+    }
+    await plugin.zonedSchedule(
+      id: 4100,
+      title: 'يوم الجمعة: سورة الكهف',
+      body: '«من قرأ سورة الكهف يوم الجمعة أضاء له من النور ما بين الجمعتين». وأكثروا من الصلاة على النبي ﷺ',
+      scheduledDate: at,
+      notificationDetails: const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'quran_kahf',
+          'سورة الكهف يوم الجمعة',
+          channelDescription: 'تذكير أسبوعي بقراءة سورة الكهف يوم الجمعة',
+          importance: Importance.high,
+          priority: Priority.high,
+          color: Color(0xFF0E6B4E),
+          styleInformation: BigTextStyleInformation(''),
+        ),
+      ),
+      androidScheduleMode: (await canExact())
+          ? AndroidScheduleMode.exactAllowWhileIdle
+          : AndroidScheduleMode.inexactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
+      payload: 'kahf',
+    );
   }
 
   /// Shows an adhan notification now, so the user can hear exactly what will play.

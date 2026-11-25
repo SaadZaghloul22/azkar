@@ -113,12 +113,31 @@ void main() {
     await swipe(420);
     await binding.takeScreenshot('01e_mushaf_p3');
     expect(find.text('٣'), findsWidgets);
+    // Long-press a verse: share / copy / bookmark sheet.
+    await tester.longPressAt(tester.getCenter(find.byType(PageView)));
+    await settle(tester, 1500);
+    expect(find.text('نسخ'), findsOneWidget);
+    await binding.takeScreenshot('01g_ayah_sheet');
+    await tapText(tester, 'علامة على الآية');
+    await settle(tester);
     navigatorKey.currentState!.pop();
     await settle(tester);
     await tapText(tester, 'الفهرس');
     await settle(tester);
     expect(find.text('سورة البَقَرَة'), findsWidgets);
     await binding.takeScreenshot('01f_quran_index');
+    await tester.tap(find.byTooltip('البحث في القرآن'));
+    await settle(tester);
+    await tester.enterText(find.byType(TextField).first, 'الحي القيوم');
+    await settle(tester, 3000);
+    expect(find.textContaining('عدد النتائج'), findsOneWidget);
+    await binding.takeScreenshot('01h_quran_search');
+    navigatorKey.currentState!.pop();
+    await settle(tester);
+    await tapText(tester, 'العلامات');
+    await settle(tester);
+    expect(find.text('الآيات'), findsOneWidget);
+    await binding.takeScreenshot('01i_quran_bookmarks');
     navigatorKey.currentState!.pop();
     await settle(tester);
 

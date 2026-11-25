@@ -1,16 +1,20 @@
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../core/arabic.dart';
 import '../../core/theme.dart';
+import '../../data/models.dart';
 import '../../data/quran.dart';
 import '../../services/notifications.dart';
 import '../../state/quran_wird.dart';
 import '../../widgets/common.dart';
+import '../share_screen.dart';
 
 const _quranFont = 'AmiriQuran';
 
@@ -18,10 +22,19 @@ const _quranFont = 'AmiriQuran';
 /// tap to show the controls. In [wirdMode] it tracks today's wird and offers
 /// "أتممت ورد اليوم" once the last page of the portion is reached.
 class MushafReader extends StatefulWidget {
-  const MushafReader({super.key, required this.quran, required this.initialPage, this.wirdMode = false});
+  const MushafReader({
+    super.key,
+    required this.quran,
+    required this.initialPage,
+    this.wirdMode = false,
+    this.highlightAyah,
+  });
   final Quran quran;
   final int initialPage;
   final bool wirdMode;
+
+  /// Ayah to highlight on open (from search or a verse bookmark).
+  final int? highlightAyah;
 
   @override
   State<MushafReader> createState() => _MushafReaderState();
@@ -31,6 +44,7 @@ class _MushafReaderState extends State<MushafReader> {
   late final PageController _pc = PageController(initialPage: widget.initialPage - 1);
   late int _page = widget.initialPage;
   bool _chrome = false;
+  late int? _selected = widget.highlightAyah;
   Timer? _saveDebounce;
   late final QuranWirdController _wird;
 
@@ -112,7 +126,10 @@ class _MushafReaderState extends State<MushafReader> {
         children: [
           GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => setState(() => _chrome = !_chrome),
+            onTap: () => setState(() {
+              _chrome = !_chrome;
+              _selected = null;
+            }),
             child: PageView.builder(
               controller: _pc,
               itemCount: Quran.pageCount,
@@ -122,6 +139,9 @@ class _MushafReaderState extends State<MushafReader> {
                 page: i + 1,
                 fontSize: w.fontSize,
                 bookmarked: w.bookmarks.contains(i + 1),
+                marked: w.ayahMarks,
+                selected: _selected,
+                onAyahLongPress: _ayahSheet,
               ),
             ),
           ),
@@ -214,6 +234,103 @@ class _MushafReaderState extends State<MushafReader> {
         ],
       ),
     );
+  }
+
+  Future<void> _ayahSheet(PageAyah a) async {
+    HapticFeedback.selectionClick();
+    setState(() => _selected = a.id);
+    final q = widget.quran;
+    final surah = q.surahs[a.surah - 1];
+    final text = q.shareText(a.id);
+    final copyText = '﴿$text﴾ [${q.reference(a.id)}]';
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (ctx) => Consumer<QuranWirdController>(
+        builder: (ctx, w, _) {
+          final marked = w.ayahMarks.contains(a.id);
+          Widget action(IconData icon, String label, VoidCallback onTap) => Expanded(
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(14),
+                  onTap: onTap,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Column(
+                      children: [
+                        Icon(icon, color: Theme.of(ctx).colorScheme.primary),
+                        const SizedBox(height: 4),
+                        Text(label, textAlign: TextAlign.center, style: const TextStyle(fontSize: 12.5)),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text('سورة ${surah.name} • الآية ${arNum(a.number)}',
+                      style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16)),
+                  const SizedBox(height: 8),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: MediaQuery.of(ctx).size.height * 0.35),
+                    child: SingleChildScrollView(
+                      child: Text(text,
+                          textDirection: TextDirection.rtl,
+                          style: const TextStyle(fontFamily: _quranFont, fontSize: 22, height: 1.9)),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      action(Icons.copy_rounded, 'نسخ', () async {
+                        await Clipboard.setData(ClipboardData(text: copyText));
+                        if (ctx.mounted) Navigator.pop(ctx);
+                        if (mounted) showSnack(context, 'تم نسخ الآية');
+                      }),
+                      action(Icons.image_rounded, 'مشاركة كصورة', () {
+                        Navigator.pop(ctx);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ShareScreen(
+                              zekr: Zekr(
+                                id: -a.id,
+                                categoryId: 0,
+                                title: 'سورة ${surah.name}',
+                                content: '﴿$text﴾',
+                                repeatCount: 1,
+                                source: '[${q.reference(a.id)}]',
+                              ),
+                              fontFamily: _quranFont,
+                              lineHeight: 2.0,
+                            ),
+                          ),
+                        );
+                      }),
+                      action(Icons.share_rounded, 'مشاركة نص', () {
+                        Navigator.pop(ctx);
+                        SharePlus.instance.share(ShareParams(text: '$copyText\n\nمن تطبيق أذكار المسلم'));
+                      }),
+                      action(marked ? Icons.bookmark_rounded : Icons.bookmark_add_outlined,
+                          marked ? 'إزالة العلامة' : 'علامة على الآية', () {
+                        w.toggleAyahMark(a.id);
+                        Navigator.pop(ctx);
+                      }),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+    if (mounted) setState(() => _selected = null);
   }
 
   void _fontSheet(BuildContext context) {
@@ -332,20 +449,55 @@ Future<void> showKhatmaDoneDialog(BuildContext context) => showDialog<void>(
 
 /// One page of the mushaf: header (surah • juz), the text fitted to the screen, page
 /// number. Each surah that starts on the page gets a banner and its basmala.
-class MushafPage extends StatelessWidget {
+class MushafPage extends StatefulWidget {
   const MushafPage({
     super.key,
     required this.quran,
     required this.page,
     this.fontSize = 0,
     this.bookmarked = false,
+    this.marked = const {},
+    this.selected,
+    this.onAyahLongPress,
   });
   final Quran quran;
   final int page;
   final double fontSize; // 0 = fit
   final bool bookmarked;
 
+  /// Ayat with a verse bookmark (tinted) and the one currently selected (highlighted).
+  final Set<int> marked;
+  final int? selected;
+  final ValueChanged<PageAyah>? onAyahLongPress;
+
   static final _fitCache = <String, double>{};
+
+  @override
+  State<MushafPage> createState() => _MushafPageState();
+}
+
+class _MushafPageState extends State<MushafPage> {
+  final _recognizers = <int, LongPressGestureRecognizer>{};
+
+  GestureRecognizer? _recognizerFor(PageAyah a) {
+    final cb = widget.onAyahLongPress;
+    if (cb == null) return null;
+    return _recognizers.putIfAbsent(a.id, () => LongPressGestureRecognizer())..onLongPress = () => cb(a);
+  }
+
+  @override
+  void dispose() {
+    for (final r in _recognizers.values) {
+      r.dispose();
+    }
+    super.dispose();
+  }
+
+  Quran get quran => widget.quran;
+  int get page => widget.page;
+  double get fontSize => widget.fontSize;
+  bool get bookmarked => widget.bookmarked;
+  static Map<String, double> get _fitCache => MushafPage._fitCache;
 
   @override
   Widget build(BuildContext context) {
@@ -381,7 +533,16 @@ class MushafPage extends StatelessWidget {
                   final size = fontSize > 0
                       ? fontSize
                       : _fit(ayat, box.maxWidth, box.maxHeight, mq.textScaler);
-                  final body = _PageBody(ayat: ayat, quran: quran, size: size, ink: ink, accent: accent);
+                  final body = _PageBody(
+                    ayat: ayat,
+                    quran: quran,
+                    size: size,
+                    ink: ink,
+                    accent: accent,
+                    marked: widget.marked,
+                    selected: widget.selected,
+                    recognizer: _recognizerFor,
+                  );
                   return fontSize > 0
                       ? SingleChildScrollView(child: body)
                       // Fitted: the text fills the page; scrolling is only a safety net
@@ -441,12 +602,24 @@ class _Block {
 }
 
 class _PageBody extends StatelessWidget {
-  const _PageBody({required this.ayat, required this.quran, required this.size, required this.ink, required this.accent});
+  const _PageBody({
+    required this.ayat,
+    required this.quran,
+    required this.size,
+    required this.ink,
+    required this.accent,
+    this.marked = const {},
+    this.selected,
+    this.recognizer,
+  });
   final List<PageAyah> ayat;
   final Quran quran;
   final double size;
   final Color ink;
   final Color accent;
+  final Set<int> marked;
+  final int? selected;
+  final GestureRecognizer? Function(PageAyah)? recognizer;
 
   static const _lineHeight = 1.95;
 
@@ -517,8 +690,10 @@ class _PageBody extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 style: TextStyle(fontFamily: _quranFont, fontSize: size, height: _lineHeight, color: ink))
           else
-            Text.rich(span(b.ayat, size, ink, accent),
-                textAlign: TextAlign.justify, textDirection: TextDirection.rtl),
+            Text.rich(
+                span(b.ayat, size, ink, accent, marked: marked, selected: selected, recognizer: recognizer),
+                textAlign: TextAlign.justify,
+                textDirection: TextDirection.rtl),
       ],
     );
   }

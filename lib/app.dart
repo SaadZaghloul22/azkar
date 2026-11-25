@@ -132,6 +132,9 @@ class _HomeShellState extends State<HomeShell> {
       HomeShell.tab.value = 2;
     } else if (payload == 'prayer') {
       HomeShell.tab.value = 3;
+    } else if (payload == 'kahf') {
+      final ctx = navigatorKey.currentContext;
+      if (ctx != null) openKahf(ctx);
     } else if (payload == 'quran_wird') {
       navigatorKey.currentState?.push(
           MaterialPageRoute(builder: (_) => const QuranScreen(initialTab: 0)));

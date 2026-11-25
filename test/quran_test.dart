@@ -58,4 +58,16 @@ void main() {
       }
     }
   });
+
+  test('search finds verses typed in ordinary spelling', () async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    expect(await q.search('الحمد لله رب العالمين'), contains(2));
+    final kursi = await q.search('الله لا اله الا هو الحي القيوم');
+    expect(kursi.first, q.surahs[1].firstAyahId + 254); // al-Baqarah 255
+    expect(await q.search('قل هو الله احد'), [6222]);
+    expect((await q.search('الصلاة')).length, greaterThan(50)); // Uthmani الصلوٰة
+    expect(await q.search('ا'), isEmpty);
+    expect(q.reference(6222), contains('١'));
+    expect(q.shareText(8).startsWith('الٓمٓ'), isTrue); // al-Baqarah 1 without basmala
+  });
 }
