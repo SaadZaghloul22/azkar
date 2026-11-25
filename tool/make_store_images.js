@@ -4,13 +4,13 @@ const fs = require('fs');
 const uri = (d, f) => 'data:' + (f.endsWith('.ttf') ? 'font/ttf' : 'image/png') + ';base64,' + fs.readFileSync(path.join(d, 'src', f)).toString('base64');
 const dir = process.argv[2];
 const shots = [
-  ['01_home.png', 'حصّن يومك بذكر الله', 'أذكار الصباح والمساء ومواقيت الصلاة في مكان واحد'],
+  ['01_home.png', 'حصّن يومك بذكر الله', 'أذكار ومصحف وأذان في تطبيق واحد'],
+  ['01e_mushaf_p3.png', 'المصحف الشريف كاملًا', 'بالرسم العثماني وصفحات مصحف المدينة • بدون إنترنت'],
+  ['01b_quran_wird_active.png', 'ورد القرآن اليومي', 'اختم القرآن في المدة التي تختارها مع تذكير كل يوم'],
+  ['06b_adhan.png', 'الأذان بثلاثة أصوات', 'لكل صلاة: أذان كامل أو إشعار، مع صوت خاص للفجر'],
   ['02_reader_morning.png', 'أذكار موثّقة بالتشكيل', 'مع مصدر كل ذكر وفضله وعدّاد بلمسة واحدة'],
   ['overlay_10.png', 'ذكر يظهر تلقائيًا', 'نافذة عائمة تذكّرك بالله أثناء استخدام هاتفك'],
-  ['05_tasbih.png', 'مسبحة إلكترونية', 'أهداف ٣٣ و١٠٠ و١٠٠٠ مع سجل يومي وأسبوعي'],
-  ['06_prayer.png', 'مواقيت الصلاة والقبلة', 'عدّ تنازلي للصلاة القادمة وتنبيه لكل صلاة'],
-  ['04_categories.png', '١١ قسمًا من الأذكار', 'الصباح والمساء والنوم والسفر والأدعية القرآنية والنبوية'],
-  ['11_reader_dark.png', 'وضع ليلي مريح', 'قراءة هادئة للعين قبل النوم'],
+  ['01g_ayah_sheet.png', 'شارك الآيات والأذكار', 'نسخ أو مشاركة كصورة جميلة، وعلامات على الآيات'],
   ['00b_onboarding_reminders.png', 'بدون إعلانات • بدون إنترنت', 'مجاني بالكامل وبياناتك تبقى على جهازك'],
 ];
 const css = (d) => `
@@ -42,15 +42,15 @@ body{direction:rtl;font-family:Cairo;overflow:hidden}
   await p.setContent(`<html><head><style>${css(dir)}
     .logo{position:absolute;right:70px;top:120px;width:150px;height:150px;border-radius:36px;box-shadow:0 14px 40px rgba(0,0,0,.35)}
     .n{position:absolute;right:70px;top:290px;color:#fff;font-size:64px;font-weight:800}
-    .tag{position:absolute;right:72px;top:385px;color:#E9D79A;font-size:28px;font-weight:700}
-    .ph{position:absolute;left:90px;top:40px;width:250px;height:556px;border-radius:30px;background:#111;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,.45);transform:rotate(-6deg)}
+    .tag{position:absolute;right:72px;top:385px;color:#E9D79A;font-size:26px;font-weight:700}
+    .ph{position:absolute;left:40px;top:40px;width:230px;height:512px;border-radius:30px;background:#111;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,.45);transform:rotate(-6deg)}
     .ph img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:24px}
-    .ph2{left:330px;top:80px;transform:rotate(5deg)}
+    .ph2{left:250px;top:80px;transform:rotate(5deg)}
     </style></head><body><div class=bg></div><div class=pat></div>
     <img class=logo src="${uri(dir,'logo.png')}">
     <div class=n>أذكار المسلم</div>
-    <div class=tag>بدون إعلانات • يعمل بدون إنترنت</div>
-    <div class="ph ph2"><img src="${uri(dir,'02_reader_morning.png')}"></div>
+    <div class=tag>أذكار • مصحف • أذان — بدون إعلانات</div>
+    <div class="ph ph2"><img src="${uri(dir,'01e_mushaf_p3.png')}"></div>
     <div class=ph><img src="${uri(dir,'01_home.png')}"></div>
     </body></html>`);
   await p.waitForTimeout(400);
