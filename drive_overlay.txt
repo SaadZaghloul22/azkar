@@ -1,0 +1,241 @@
+Resolving dependencies...
+Downloading packages...
+  code_assets 1.2.1 (2.2.0 available)
+  cross_file 0.3.5+5 (0.4.0 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  dbus 0.7.15 (0.8.1 available)
+  flutter_local_notifications 22.3.3 (23.0.4 available)
+  flutter_local_notifications_linux 8.0.2 (9.0.0 available)
+  flutter_local_notifications_platform_interface 12.2.0 (13.0.0 available)
+  flutter_local_notifications_web 1.0.0 (2.0.0 available)
+  flutter_local_notifications_windows 3.1.1 (4.0.1 available)
+  gsettings 0.2.8 (0.2.9 available)
+  hooks 2.0.2 (2.2.0 available)
+  jni 1.1.2 (1.2.1 available)
+  jni_flutter 1.0.4+1 (1.1.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  meta 1.18.3 (1.19.0 available)
+  objective_c 9.5.0 (9.6.4 available)
+  petitparser 7.0.2 (7.1.0 available)
+  record_use 0.6.0 (1.1.1 available)
+  shared_preferences_android 2.5.4 (2.5.5 available)
+  shared_preferences_foundation 2.5.7 (2.6.2 available)
+  sqflite 2.4.5 (2.4.6 available)
+  sqflite_android 2.4.5 (2.4.6 available)
+  sqflite_common 2.5.14 (2.5.17 available)
+  sqflite_darwin 2.4.4+1 (2.4.6 available)
+  sqflite_platform_interface 2.4.3 (2.4.4 available)
+  synchronized 3.5.0 (3.6.1+1 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+29 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleDebug'...                          
+WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): workmanager_android
+Future versions of Flutter will fail to build if your app uses plugins that apply KGP.
+
+Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.
+If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing
+an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors
+
+If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors
+Running Gradle task 'assembleDebug'...                             21.5s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk
+Installing build/app/outputs/flutter-apk/app-debug.apk...          439ms
+D/FlutterGeolocator( 6731): Creating service.
+D/FlutterGeolocator( 6731): Binding to location service.
+I/Choreographer( 6731): Skipped 59 frames!  The application may be doing too much work on its main thread.
+D/FlutterGeolocator( 6731): Geolocator foreground service connected
+D/FlutterGeolocator( 6731): Initializing Geolocator services
+D/FlutterGeolocator( 6731): Flutter engine connected. Connected engine count 1
+D/FlutterJNI( 6731): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:43573/71xfX6T7QQQ=/
+VMServiceFlutterDriver: Isolate found with number: 1563110901839579
+VMServiceFlutterDriver: Isolate 1563110901839579 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 6731): 00:00 +0: floating zekr window can be shown
+VMServiceFlutterDriver: Connected to Flutter application.
+D/FlutterJNI( 6731): Sending viewport metrics to the engine.
+D/FlutterJNI( 6731): Sending viewport metrics to the engine.
+D/FlutterJNI( 6731): Sending viewport metrics to the engine.
+D/FlutterJNI( 6731): Sending viewport metrics to the engine.
+D/CompatibilityChangeReporter( 6731): Compat change id reported: 194532703; UID 10193; state: ENABLED
+D/CompatibilityChangeReporter( 6731): Compat change id reported: 253665015; UID 10193; state: ENABLED
+D/WM-SystemJobScheduler( 6731): Scheduling work ID b8a1b905-48cb-49b3-9478-39de9939956fJob ID 0
+D/WM-GreedyScheduler( 6731): Starting work for b8a1b905-48cb-49b3-9478-39de9939956f
+D/WM-SystemJobService( 6731): onStartJob for WorkGenerationalId(workSpecId=b8a1b905-48cb-49b3-9478-39de9939956f, generation=0)
+D/WM-Processor( 6731): Processor: processing WorkGenerationalId(workSpecId=b8a1b905-48cb-49b3-9478-39de9939956f, generation=0)
+D/WM-Processor( 6731): Work WorkGenerationalId(workSpecId=b8a1b905-48cb-49b3-9478-39de9939956f, generation=0) is already enqueued for processing
+D/CompatibilityChangeReporter( 6731): Compat change id reported: 263076149; UID 10193; state: ENABLED
+D/WM-WorkerWrapper( 6731): Starting work for dev.fluttercommunity.workmanager.BackgroundWorker
+D/WM-PackageManagerHelper( 6731): androidx.work.impl.background.systemalarm.RescheduleReceiver enabled
+D/EGL_emulation( 6731): app_time_stats: avg=340.48ms min=79.29ms max=720.65ms count=4
+I/flutter ( 6731): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FlutterGeolocator( 6731): Geolocator foreground service connected
+D/FlutterGeolocator( 6731): Initializing Geolocator services
+D/FlutterGeolocator( 6731): Flutter engine connected. Connected engine count 2
+D/FlutterGeolocator( 6731): Flutter engine disconnected. Connected engine count 1
+D/FlutterGeolocator( 6731): Disposing Geolocator services
+E/FlutterGeolocator( 6731): Geolocator position updates stopped
+E/FlutterGeolocator( 6731): There is still another flutter engine connected, not stopping location service
+I/WM-WorkerWrapper( 6731): Worker result SUCCESS for Work [ id=b8a1b905-48cb-49b3-9478-39de9939956f, tags={ dev.fluttercommunity.workmanager.BackgroundWorker } ]
+D/WM-Processor( 6731): Processor b8a1b905-48cb-49b3-9478-39de9939956f executed; reschedule = false
+D/WM-SystemJobService( 6731): b8a1b905-48cb-49b3-9478-39de9939956f executed on JobScheduler
+D/WM-GreedyScheduler( 6731): Cancelling work ID b8a1b905-48cb-49b3-9478-39de9939956f
+D/WM-SystemJobService( 6731): onStopJob for WorkGenerationalId(workSpecId=b8a1b905-48cb-49b3-9478-39de9939956f, generation=0)
+D/WM-SystemJobScheduler( 6731): Scheduling work ID b8a1b905-48cb-49b3-9478-39de9939956fJob ID 1
+D/ProfileInstaller( 6731): Installing profile for com.azk.azkarak
+D/EGL_emulation( 6731): app_time_stats: avg=144.05ms min=83.81ms max=277.18ms count=7
+I/PlayCore( 6731): UID: [10193]  PID: [6731] AppUpdateService : requestUpdateInfo(com.azk.azkarak)
+I/PlayCore( 6731): UID: [10193]  PID: [6731] AppUpdateService : Initiate binding to the service.
+I/PlayCore( 6731): UID: [10193]  PID: [6731] AppUpdateService : Failed to bind to the service.
+D/EGL_emulation( 6731): app_time_stats: avg=202.78ms min=26.11ms max=453.04ms count=5
+D/EGL_emulation( 6731): app_time_stats: avg=113.56ms min=91.01ms max=118.41ms count=9
+VMServiceFlutterDriver: request_data message is taking a long time to complete...
+D/EGL_emulation( 6731): app_time_stats: avg=117.42ms min=112.79ms max=122.95ms count=9
+D/CompatibilityChangeReporter( 6731): Compat change id reported: 210923482; UID 10193; state: ENABLED
+D/EGL_emulation( 6731): app_time_stats: avg=157.20ms min=108.72ms max=407.66ms count=7
+D/EGL_emulation( 6731): app_time_stats: avg=115.62ms min=99.03ms max=130.54ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.56ms min=103.43ms max=130.03ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.59ms min=103.78ms max=129.61ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.59ms min=112.30ms max=123.68ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.71ms min=105.81ms max=134.20ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.40ms min=104.45ms max=128.91ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.82ms min=112.06ms max=120.71ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=119.01ms min=109.67ms max=138.38ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=115.19ms min=104.58ms max=123.66ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.59ms min=110.83ms max=124.93ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.21ms min=106.13ms max=126.44ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.75ms min=112.48ms max=123.93ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.92ms min=101.45ms max=130.73ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.42ms min=110.45ms max=124.51ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.62ms min=111.61ms max=125.77ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.38ms min=112.34ms max=121.99ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.00ms min=109.72ms max=123.71ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.14ms min=110.82ms max=123.63ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.03ms min=109.76ms max=122.34ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.61ms min=113.15ms max=123.58ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.01ms min=111.80ms max=123.49ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.68ms min=111.36ms max=122.69ms count=9
+W/WindowOnBackDispatcher( 6731): sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@8aabf7d
+D/EGL_emulation( 6731): app_time_stats: avg=116.50ms min=98.27ms max=170.53ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.33ms min=107.49ms max=130.33ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.26ms min=110.38ms max=124.37ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.39ms min=111.41ms max=125.10ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.69ms min=112.14ms max=123.58ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.80ms min=94.26ms max=139.35ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=115.91ms min=109.59ms max=120.05ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.58ms min=113.87ms max=119.20ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.62ms min=111.51ms max=121.36ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.72ms min=113.29ms max=125.20ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.66ms min=108.93ms max=126.02ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.79ms min=113.11ms max=119.07ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.23ms min=112.34ms max=121.21ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.10ms min=106.37ms max=126.10ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.28ms min=107.29ms max=123.88ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.99ms min=111.55ms max=122.07ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.46ms min=108.83ms max=125.55ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.72ms min=108.41ms max=130.90ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.56ms min=111.54ms max=120.97ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.89ms min=113.17ms max=121.54ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.17ms min=108.15ms max=125.78ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=115.83ms min=112.87ms max=118.16ms count=9
+W/WindowOnBackDispatcher( 6731): sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@b36d73b
+D/EGL_emulation( 6731): app_time_stats: avg=117.23ms min=77.69ms max=157.52ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.26ms min=110.85ms max=127.79ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.26ms min=106.16ms max=123.91ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.22ms min=108.89ms max=122.84ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.32ms min=112.01ms max=122.14ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.50ms min=113.71ms max=121.59ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=118.44ms min=113.65ms max=132.44ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.73ms min=112.52ms max=121.19ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.56ms min=109.43ms max=121.77ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.62ms min=111.49ms max=120.33ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.71ms min=108.38ms max=126.78ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.50ms min=102.38ms max=140.23ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.52ms min=113.04ms max=122.13ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.04ms min=111.70ms max=122.94ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.61ms min=112.47ms max=120.30ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.30ms min=103.76ms max=133.96ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.58ms min=113.46ms max=119.73ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.64ms min=110.95ms max=122.52ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.66ms min=105.79ms max=127.80ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.54ms min=99.55ms max=135.62ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.23ms min=108.48ms max=124.60ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.60ms min=109.50ms max=123.50ms count=9
+W/WindowOnBackDispatcher( 6731): sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@56bc39c
+D/EGL_emulation( 6731): app_time_stats: avg=120.09ms min=89.07ms max=172.11ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.34ms min=109.63ms max=122.33ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.60ms min=113.20ms max=122.16ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.63ms min=111.75ms max=123.13ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.13ms min=108.60ms max=121.81ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.27ms min=110.27ms max=125.33ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.85ms min=114.04ms max=120.34ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.83ms min=112.63ms max=122.03ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.12ms min=110.79ms max=123.06ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=115.70ms min=109.28ms max=121.77ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.73ms min=110.97ms max=123.50ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.63ms min=111.75ms max=122.65ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.31ms min=111.68ms max=124.19ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=115.97ms min=103.59ms max=130.40ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.06ms min=110.16ms max=122.73ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.19ms min=109.81ms max=124.64ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.74ms min=112.40ms max=122.04ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.04ms min=108.36ms max=123.01ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.68ms min=113.14ms max=121.87ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.65ms min=109.86ms max=120.49ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.77ms min=104.06ms max=128.68ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=115.72ms min=108.15ms max=122.19ms count=9
+W/WindowOnBackDispatcher( 6731): sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@e75a0
+D/EGL_emulation( 6731): app_time_stats: avg=121.97ms min=114.46ms max=162.34ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=113.73ms min=83.29ms max=127.34ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.32ms min=86.93ms max=145.55ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.70ms min=111.62ms max=122.35ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.46ms min=111.86ms max=119.67ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=118.37ms min=93.04ms max=139.12ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=114.79ms min=101.53ms max=121.35ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.82ms min=114.66ms max=121.92ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=115.69ms min=105.80ms max=126.72ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.92ms min=110.79ms max=121.44ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=118.12ms min=110.47ms max=130.62ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=114.86ms min=101.26ms max=123.65ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.09ms min=110.36ms max=123.11ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.29ms min=111.01ms max=122.94ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.60ms min=110.64ms max=127.17ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.03ms min=109.86ms max=123.45ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.59ms min=107.81ms max=121.48ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.00ms min=110.82ms max=122.06ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.57ms min=103.44ms max=147.01ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.69ms min=111.81ms max=121.67ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.92ms min=111.61ms max=121.92ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.33ms min=110.60ms max=120.46ms count=9
+W/WindowOnBackDispatcher( 6731): sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@15f4864
+D/EGL_emulation( 6731): app_time_stats: avg=132.29ms min=113.48ms max=256.74ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=114.11ms min=94.29ms max=143.20ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.44ms min=112.80ms max=120.16ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.72ms min=108.69ms max=123.24ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.56ms min=103.40ms max=127.76ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.63ms min=109.49ms max=123.44ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.51ms min=110.82ms max=120.53ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.83ms min=112.89ms max=121.09ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.36ms min=108.02ms max=123.23ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.84ms min=110.79ms max=122.88ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.95ms min=111.69ms max=121.89ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=120.66ms min=114.06ms max=149.39ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=114.60ms min=92.24ms max=125.61ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=115.99ms min=110.64ms max=122.26ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.82ms min=113.32ms max=120.66ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.63ms min=111.67ms max=122.45ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.35ms min=110.32ms max=123.61ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=117.00ms min=114.15ms max=120.41ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.28ms min=110.95ms max=122.15ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.65ms min=113.42ms max=122.49ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.77ms min=111.35ms max=122.34ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.56ms min=109.18ms max=124.91ms count=9
+D/EGL_emulation( 6731): app_time_stats: avg=116.74ms min=113.96ms max=121.49ms count=9
+I/flutter ( 6731): 02:27 +1: (tearDownAll)
+I/flutter ( 6731): 02:27 +2: All tests passed!
+All tests passed.

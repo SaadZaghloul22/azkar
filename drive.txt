@@ -1,0 +1,565 @@
+Resolving dependencies...
+Downloading packages...
+  code_assets 1.2.1 (2.2.0 available)
+  cross_file 0.3.5+5 (0.4.0 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  dbus 0.7.15 (0.8.1 available)
+  flutter_local_notifications 22.3.3 (23.0.4 available)
+  flutter_local_notifications_linux 8.0.2 (9.0.0 available)
+  flutter_local_notifications_platform_interface 12.2.0 (13.0.0 available)
+  flutter_local_notifications_web 1.0.0 (2.0.0 available)
+  flutter_local_notifications_windows 3.1.1 (4.0.1 available)
+  gsettings 0.2.8 (0.2.9 available)
+  hooks 2.0.2 (2.2.0 available)
+  jni 1.1.2 (1.2.1 available)
+  jni_flutter 1.0.4+1 (1.1.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  meta 1.18.3 (1.19.0 available)
+  objective_c 9.5.0 (9.6.4 available)
+  petitparser 7.0.2 (7.1.0 available)
+  record_use 0.6.0 (1.1.1 available)
+  shared_preferences_android 2.5.4 (2.5.5 available)
+  shared_preferences_foundation 2.5.7 (2.6.2 available)
+  sqflite 2.4.5 (2.4.6 available)
+  sqflite_android 2.4.5 (2.4.6 available)
+  sqflite_common 2.5.14 (2.5.17 available)
+  sqflite_darwin 2.4.4+1 (2.4.6 available)
+  sqflite_platform_interface 2.4.3 (2.4.4 available)
+  synchronized 3.5.0 (3.6.1+1 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+29 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleDebug'...                          
+Loading package information...                                                  
+Loading local repository...                                                     
+[                                       ] 3% Loading local repository...        
+[                                       ] 3% Fetch remote repository...         
+[=                                      ] 3% Fetch remote repository...         
+[=                                      ] 4% Fetch remote repository...         
+[=                                      ] 5% Fetch remote repository...         
+[==                                     ] 5% Fetch remote repository...         
+[==                                     ] 6% Fetch remote repository...         
+[==                                     ] 7% Fetch remote repository...         
+[==                                     ] 7% Computing updates...               
+[===                                    ] 8% Computing updates...               
+[===                                    ] 10% Computing updates...              
+[===                                    ] 10% Installing NDK (Side by side) 28.2
+[===                                    ] 10% Downloading android-ndk-r28c-linux
+[====                                   ] 10% Downloading android-ndk-r28c-linux
+[====                                   ] 11% Downloading android-ndk-r28c-linux
+[====                                   ] 12% Downloading android-ndk-r28c-linux
+[=====                                  ] 13% Downloading android-ndk-r28c-linux
+[=====                                  ] 14% Downloading android-ndk-r28c-linux
+[=====                                  ] 15% Downloading android-ndk-r28c-linux
+[======                                 ] 15% Downloading android-ndk-r28c-linux
+[======                                 ] 16% Downloading android-ndk-r28c-linux
+[======                                 ] 17% Downloading android-ndk-r28c-linux
+[=======                                ] 18% Downloading android-ndk-r28c-linux
+[=======                                ] 19% Downloading android-ndk-r28c-linux
+[=======                                ] 20% Downloading android-ndk-r28c-linux
+[========                               ] 20% Downloading android-ndk-r28c-linux
+[========                               ] 21% Downloading android-ndk-r28c-linux
+[========                               ] 22% Downloading android-ndk-r28c-linux
+[=========                              ] 23% Downloading android-ndk-r28c-linux
+[=========                              ] 24% Downloading android-ndk-r28c-linux
+[=========                              ] 25% Downloading android-ndk-r28c-linux
+[==========                             ] 25% Downloading android-ndk-r28c-linux
+[==========                             ] 26% Downloading android-ndk-r28c-linux
+[==========                             ] 27% Downloading android-ndk-r28c-linux
+[===========                            ] 28% Downloading android-ndk-r28c-linux
+[===========                            ] 29% Downloading android-ndk-r28c-linux
+[===========                            ] 30% Downloading android-ndk-r28c-linux
+[============                           ] 30% Downloading android-ndk-r28c-linux
+[============                           ] 31% Downloading android-ndk-r28c-linux
+[============                           ] 32% Downloading android-ndk-r28c-linux
+[============                           ] 33% Downloading android-ndk-r28c-linux
+[============                           ] 33% Unzipping...                      
+[============                           ] 33% Unzipping... android-ndk-r28c/    
+[============                           ] 33% Unzipping... android-ndk-r28c/READ
+[=============                          ] 33% Unzipping... android-ndk-r28c/READ
+[=============                          ] 33% Unzipping... android-ndk-r28c/meta
+[=============                          ] 33% Unzipping... android-ndk-r28c/shad
+[=============                          ] 33% Unzipping... android-ndk-r28c/ndk-
+[=============                          ] 33% Unzipping... android-ndk-r28c/wrap
+[=============                          ] 33% Unzipping... android-ndk-r28c/ndk-
+[=============                          ] 33% Unzipping... android-ndk-r28c/tool
+[=============                          ] 34% Unzipping... android-ndk-r28c/tool
+[=============                          ] 35% Unzipping... android-ndk-r28c/tool
+[==============                         ] 35% Unzipping... android-ndk-r28c/tool
+[==============                         ] 36% Unzipping... android-ndk-r28c/tool
+[==============                         ] 37% Unzipping... android-ndk-r28c/tool
+[===============                        ] 38% Unzipping... android-ndk-r28c/tool
+[===============                        ] 39% Unzipping... android-ndk-r28c/tool
+[===============                        ] 40% Unzipping... android-ndk-r28c/tool
+[================                       ] 40% Unzipping... android-ndk-r28c/tool
+[================                       ] 41% Unzipping... android-ndk-r28c/tool
+[================                       ] 42% Unzipping... android-ndk-r28c/tool
+[=================                      ] 43% Unzipping... android-ndk-r28c/tool
+[=================                      ] 44% Unzipping... android-ndk-r28c/tool
+[=================                      ] 45% Unzipping... android-ndk-r28c/tool
+[==================                     ] 45% Unzipping... android-ndk-r28c/tool
+[==================                     ] 46% Unzipping... android-ndk-r28c/tool
+[==================                     ] 47% Unzipping... android-ndk-r28c/tool
+[===================                    ] 48% Unzipping... android-ndk-r28c/tool
+[===================                    ] 49% Unzipping... android-ndk-r28c/tool
+[===================                    ] 50% Unzipping... android-ndk-r28c/tool
+[====================                   ] 50% Unzipping... android-ndk-r28c/tool
+[====================                   ] 51% Unzipping... android-ndk-r28c/tool
+[====================                   ] 52% Unzipping... android-ndk-r28c/tool
+[=====================                  ] 53% Unzipping... android-ndk-r28c/tool
+[=====================                  ] 54% Unzipping... android-ndk-r28c/tool
+[=====================                  ] 54% Unzipping... android-ndk-r28c/buil
+[=====================                  ] 54% Unzipping... android-ndk-r28c/sour
+[=====================                  ] 54% Unzipping... android-ndk-r28c/NOTI
+[=====================                  ] 54% Unzipping... android-ndk-r28c/ndk-
+[=====================                  ] 54% Unzipping... android-ndk-r28c/NOTI
+[=====================                  ] 54% Unzipping... android-ndk-r28c/pyth
+[=====================                  ] 54% Unzipping... android-ndk-r28c/preb
+[=====================                  ] 54% Unzipping... android-ndk-r28c/ndk-
+[=====================                  ] 54% Unzipping... android-ndk-r28c/sour
+[=====================                  ] 54% Unzipping... android-ndk-r28c/simp
+[=====================                  ] 55% Unzipping... android-ndk-r28c/simp
+[=====================                  ] 55% Unzipping... android-ndk-r28c/CHAN
+[=======================================] 100% Unzipping... android-ndk-r28c/CHA
+
+WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): workmanager_android
+Future versions of Flutter will fail to build if your app uses plugins that apply KGP.
+
+Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.
+If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing
+an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors
+
+If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors
+Note: /home/runner/.pub-cache/hosted/pub.dev/geolocator_android-5.2.1/android/src/main/java/com/baseflow/geolocator/location/LocationMapper.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Checking the license for package CMake 3.22.1 in /usr/local/lib/android/sdk/licenses
+License for package CMake 3.22.1 accepted.
+Preparing "Install CMake 3.22.1 v.3.22.1".
+"Install CMake 3.22.1 v.3.22.1" ready.
+Installing CMake 3.22.1 in /usr/local/lib/android/sdk/cmake/3.22.1
+"Install CMake 3.22.1 v.3.22.1" complete.
+"Install CMake 3.22.1 v.3.22.1" finished.
+Running Gradle task 'assembleDebug'...                            248.4s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk
+Installing build/app/outputs/flutter-apk/app-debug.apk...          452ms
+D/FlutterGeolocator( 6151): Creating service.
+D/FlutterGeolocator( 6151): Binding to location service.
+I/Choreographer( 6151): Skipped 33 frames!  The application may be doing too much work on its main thread.
+D/FlutterGeolocator( 6151): Geolocator foreground service connected
+D/FlutterGeolocator( 6151): Initializing Geolocator services
+D/FlutterGeolocator( 6151): Flutter engine connected. Connected engine count 1
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:35845/fg_u4aG6YH8=/
+VMServiceFlutterDriver: Isolate found with number: 5121461526489887
+VMServiceFlutterDriver: Isolate 5121461526489887 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 6151): 00:00 +0: main flows render and work
+VMServiceFlutterDriver: Connected to Flutter application.
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/EGL_emulation( 6151): app_time_stats: avg=854.70ms min=305.35ms max=1404.05ms count=2
+D/EGL_emulation( 6151): app_time_stats: avg=263.86ms min=47.89ms max=694.37ms count=5
+D/CompatibilityChangeReporter( 6151): Compat change id reported: 236825255; UID 10192; state: ENABLED
+D/EGL_emulation( 6151): app_time_stats: avg=503.35ms min=363.98ms max=642.72ms count=2
+D/ProfileInstaller( 6151): Installing profile for com.azk.azkarak
+D/CompatibilityChangeReporter( 6151): Compat change id reported: 194532703; UID 10192; state: ENABLED
+D/CompatibilityChangeReporter( 6151): Compat change id reported: 253665015; UID 10192; state: ENABLED
+D/WM-SystemJobScheduler( 6151): Scheduling work ID dc64740d-c5af-4781-9a97-6fdd47896b58Job ID 0
+D/WM-GreedyScheduler( 6151): Starting work for dc64740d-c5af-4781-9a97-6fdd47896b58
+D/WM-Processor( 6151): Processor: processing WorkGenerationalId(workSpecId=dc64740d-c5af-4781-9a97-6fdd47896b58, generation=0)
+D/CompatibilityChangeReporter( 6151): Compat change id reported: 263076149; UID 10192; state: ENABLED
+D/WM-PackageManagerHelper( 6151): androidx.work.impl.background.systemalarm.RescheduleReceiver enabled
+D/WM-SystemJobService( 6151): onStartJob for WorkGenerationalId(workSpecId=dc64740d-c5af-4781-9a97-6fdd47896b58, generation=0)
+D/WM-WorkerWrapper( 6151): Starting work for dev.fluttercommunity.workmanager.BackgroundWorker
+D/WM-Processor( 6151): Work WorkGenerationalId(workSpecId=dc64740d-c5af-4781-9a97-6fdd47896b58, generation=0) is already enqueued for processing
+I/flutter ( 6151): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FlutterGeolocator( 6151): Geolocator foreground service connected
+D/FlutterGeolocator( 6151): Initializing Geolocator services
+D/FlutterGeolocator( 6151): Flutter engine connected. Connected engine count 2
+D/EGL_emulation( 6151): app_time_stats: avg=312.23ms min=155.65ms max=490.07ms count=4
+VMServiceFlutterDriver: request_data message is taking a long time to complete...
+D/EGL_emulation( 6151): app_time_stats: avg=156.46ms min=131.87ms max=183.03ms count=7
+D/FlutterGeolocator( 6151): Flutter engine disconnected. Connected engine count 1
+D/FlutterGeolocator( 6151): Disposing Geolocator services
+E/FlutterGeolocator( 6151): Geolocator position updates stopped
+E/FlutterGeolocator( 6151): There is still another flutter engine connected, not stopping location service
+I/WM-WorkerWrapper( 6151): Worker result SUCCESS for Work [ id=dc64740d-c5af-4781-9a97-6fdd47896b58, tags={ dev.fluttercommunity.workmanager.BackgroundWorker } ]
+D/WM-Processor( 6151): Processor dc64740d-c5af-4781-9a97-6fdd47896b58 executed; reschedule = false
+D/WM-SystemJobService( 6151): dc64740d-c5af-4781-9a97-6fdd47896b58 executed on JobScheduler
+D/WM-GreedyScheduler( 6151): Cancelling work ID dc64740d-c5af-4781-9a97-6fdd47896b58
+D/WM-SystemJobScheduler( 6151): Scheduling work ID dc64740d-c5af-4781-9a97-6fdd47896b58Job ID 0
+D/EGL_emulation( 6151): app_time_stats: avg=126.99ms min=114.82ms max=156.69ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=3981.41ms min=3981.41ms max=3981.41ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=146.35ms min=110.54ms max=351.84ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=101.06ms min=18.17ms max=127.61ms count=11
+D/EGL_emulation( 6151): app_time_stats: avg=2048.40ms min=2048.40ms max=2048.40ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=98.12ms min=10.90ms max=150.18ms count=11
+D/EGL_emulation( 6151): app_time_stats: avg=115.04ms min=105.85ms max=123.43ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=1880.10ms min=1880.10ms max=1880.10ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=98.50ms min=19.74ms max=161.94ms count=11
+D/EGL_emulation( 6151): app_time_stats: avg=116.61ms min=113.52ms max=119.96ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=1900.28ms min=1900.28ms max=1900.28ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=97.03ms min=19.42ms max=157.53ms count=11
+D/EGL_emulation( 6151): app_time_stats: avg=1882.62ms min=1882.62ms max=1882.62ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=121.09ms min=113.69ms max=156.01ms count=9
+I/PlayCore( 6151): UID: [10192]  PID: [6151] AppUpdateService : requestUpdateInfo(com.azk.azkarak)
+I/PlayCore( 6151): UID: [10192]  PID: [6151] AppUpdateService : Initiate binding to the service.
+I/PlayCore( 6151): UID: [10192]  PID: [6151] AppUpdateService : Failed to bind to the service.
+D/EGL_emulation( 6151): app_time_stats: avg=148.17ms min=101.11ms max=278.42ms count=7
+D/EGL_emulation( 6151): app_time_stats: avg=120.17ms min=110.36ms max=141.08ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=2852.37ms min=2852.37ms max=2852.37ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=179.49ms min=103.92ms max=492.39ms count=6
+W/WindowOnBackDispatcher( 6151): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6151): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 6151): app_time_stats: avg=107.33ms min=26.84ms max=141.24ms count=10
+D/EGL_emulation( 6151): app_time_stats: avg=118.53ms min=109.27ms max=131.61ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=3589.40ms min=3589.40ms max=3589.40ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=155.82ms min=110.47ms max=453.70ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.68ms min=23.14ms max=286.09ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=117.57ms min=108.96ms max=131.17ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=3078.06ms min=3078.06ms max=3078.06ms count=1
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/EGL_emulation( 6151): app_time_stats: avg=176.98ms min=98.61ms max=463.61ms count=6
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+E/BufferQueueProducer( 6151): [ImageReader-1080x2400f1m3-6151-0](id:180700000002,api:1,p:6151,c:6151) cancelBuffer: BufferQueue has been abandoned
+D/EGL_emulation( 6151): app_time_stats: avg=122.87ms min=74.50ms max=152.90ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=112.91ms min=86.91ms max=137.78ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=1642.07ms min=321.82ms max=2962.33ms count=2
+I/flutter ( 6151): MUSHAF_SWIPE: pageviews=1
+I/flutter ( 6151): MUSHAF_SWIPE: before=0.0
+D/EGL_emulation( 6151): app_time_stats: avg=112.51ms min=20.00ms max=159.83ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=39.33ms min=15.24ms max=149.75ms count=28
+D/EGL_emulation( 6151): app_time_stats: avg=118.36ms min=101.63ms max=137.16ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.60ms min=112.00ms max=138.29ms count=9
+I/flutter ( 6151): MUSHAF_SWIPE: after L->R =1.0
+D/EGL_emulation( 6151): app_time_stats: avg=3764.90ms min=3764.90ms max=3764.90ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=62.59ms min=15.39ms max=340.88ms count=16
+D/EGL_emulation( 6151): app_time_stats: avg=53.94ms min=14.73ms max=148.47ms count=20
+D/EGL_emulation( 6151): app_time_stats: avg=118.23ms min=103.46ms max=133.41ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=116.91ms min=103.36ms max=136.43ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=1922.45ms min=143.95ms max=3700.94ms count=2
+D/EGL_emulation( 6151): app_time_stats: avg=150.75ms min=22.23ms max=640.91ms count=7
+D/EGL_emulation( 6151): app_time_stats: avg=118.28ms min=115.80ms max=131.07ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=2607.95ms min=2607.95ms max=2607.95ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=173.31ms min=69.41ms max=482.91ms count=6
+D/EGL_emulation( 6151): app_time_stats: avg=94.51ms min=19.21ms max=144.39ms count=12
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+E/BufferQueueProducer( 6151): [ImageReader-1080x2272f1m3-6151-1](id:180700000003,api:1,p:6151,c:6151) queueBuffer: BufferQueue has been abandoned
+E/Surface ( 6151): queueBuffer: error queuing buffer, -19
+E/BufferQueueProducer( 6151): [ImageReader-1080x2272f1m3-6151-1](id:180700000003,api:1,p:6151,c:6151) dequeueBuffer: BufferQueue has been abandoned
+E/EGL_emulation( 6151): tid 6230: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)
+E/flutter ( 6151): [ERROR:flutter/impeller/toolkit/egl/egl.cc(56)] EGL Error: Bad Surface (12301) in ../../../flutter/impeller/toolkit/egl/surface.cc:32
+D/EGL_emulation( 6151): app_time_stats: avg=119.44ms min=112.37ms max=136.43ms count=10
+D/EGL_emulation( 6151): app_time_stats: avg=126.28ms min=29.18ms max=332.90ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=116.87ms min=100.40ms max=132.33ms count=9
+I/ImeTracker( 6151): com.azk.azkarak:cd20137d: onRequestShow at ORIGIN_CLIENT_SHOW_SOFT_INPUT reason SHOW_SOFT_INPUT
+I/ImeTracker( 6151): com.azk.azkarak:cd20137d: onFailed at PHASE_CLIENT_VIEW_SERVED
+W/InputMethodManager( 6151): Ignoring showSoftInput() as view=io.flutter.embedding.android.FlutterView{53bf1a7 VFE...... .F....ID 0,0-1080,2400 #1} is not served.
+I/ImeTracker( 6151): com.azk.azkarak:dbc8eb15: onRequestShow at ORIGIN_CLIENT_SHOW_SOFT_INPUT reason SHOW_SOFT_INPUT
+I/ImeTracker( 6151): com.azk.azkarak:dbc8eb15: onFailed at PHASE_CLIENT_VIEW_SERVED
+W/InputMethodManager( 6151): Ignoring showSoftInput() as view=io.flutter.embedding.android.FlutterView{53bf1a7 VFE...... .F....ID 0,0-1080,2400 #1} is not served.
+D/EGL_emulation( 6151): app_time_stats: avg=111.90ms min=23.37ms max=201.91ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.49ms min=112.57ms max=138.03ms count=9
+I/ImeTracker( 6151): com.azk.azkarak:9a4c04b4: onRequestShow at ORIGIN_CLIENT_SHOW_SOFT_INPUT reason SHOW_SOFT_INPUT
+I/ImeTracker( 6151): com.azk.azkarak:9a4c04b4: onFailed at PHASE_CLIENT_VIEW_SERVED
+W/InputMethodManager( 6151): Ignoring showSoftInput() as view=io.flutter.embedding.android.FlutterView{53bf1a7 VFE...... .F...... 0,0-1080,2400 #1} is not served.
+D/EGL_emulation( 6151): app_time_stats: avg=113.19ms min=16.23ms max=160.18ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.39ms min=113.95ms max=130.77ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.63ms min=111.06ms max=135.70ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=3150.50ms min=238.88ms max=5358.27ms count=3
+I/ImeTracker( 6151): com.azk.azkarak:8ef28681: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT
+I/ImeTracker( 6151): com.azk.azkarak:8ef28681: onFailed at PHASE_CLIENT_VIEW_SERVED
+D/EGL_emulation( 6151): app_time_stats: avg=138.76ms min=115.00ms max=261.30ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=121.00ms min=102.54ms max=146.43ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=112.46ms min=16.46ms max=316.37ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=119.03ms min=113.10ms max=136.97ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=4146.45ms min=4146.45ms max=4146.45ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=145.60ms min=113.44ms max=261.05ms count=7
+D/EGL_emulation( 6151): app_time_stats: avg=118.91ms min=97.27ms max=141.23ms count=9
+W/WindowOnBackDispatcher( 6151): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6151): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 6151): app_time_stats: avg=119.44ms min=28.67ms max=318.06ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=120.30ms min=102.50ms max=146.81ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.48ms min=115.23ms max=136.87ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=5311.75ms min=5311.75ms max=5311.75ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=100.04ms min=30.37ms max=197.46ms count=11
+D/EGL_emulation( 6151): app_time_stats: avg=119.40ms min=97.79ms max=153.31ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=1938.77ms min=1938.77ms max=1938.77ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=135.13ms min=113.96ms max=274.16ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=118.05ms min=103.95ms max=133.77ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=87.72ms min=16.90ms max=132.62ms count=12
+D/EGL_emulation( 6151): app_time_stats: avg=3667.49ms min=3667.49ms max=3667.49ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=139.12ms min=108.89ms max=295.88ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=100.55ms min=30.13ms max=122.58ms count=11
+D/EGL_emulation( 6151): app_time_stats: avg=63.34ms min=27.66ms max=129.72ms count=16
+D/EGL_emulation( 6151): app_time_stats: avg=85.61ms min=28.86ms max=133.66ms count=13
+D/EGL_emulation( 6151): app_time_stats: avg=4475.39ms min=4475.39ms max=4475.39ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=127.07ms min=111.17ms max=193.69ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=94.15ms min=27.34ms max=134.89ms count=11
+D/EGL_emulation( 6151): app_time_stats: avg=1943.96ms min=1943.96ms max=1943.96ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=169.84ms min=112.55ms max=473.93ms count=7
+W/WindowOnBackDispatcher( 6151): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6151): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 6151): app_time_stats: avg=103.27ms min=18.53ms max=165.68ms count=10
+D/EGL_emulation( 6151): app_time_stats: avg=2337.09ms min=2337.09ms max=2337.09ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=142.62ms min=108.33ms max=309.97ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=114.43ms min=92.08ms max=125.38ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.49ms min=114.64ms max=128.10ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=2526.97ms min=2526.97ms max=2526.97ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=139.14ms min=115.13ms max=288.33ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=124.31ms min=112.27ms max=169.30ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=124.33ms min=75.63ms max=216.09ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=119.71ms min=113.12ms max=132.79ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=4417.73ms min=4417.73ms max=4417.73ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=100.43ms min=34.96ms max=181.20ms count=10
+D/EGL_emulation( 6151): app_time_stats: avg=116.66ms min=101.31ms max=132.25ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=1948.88ms min=1948.88ms max=1948.88ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=136.93ms min=111.11ms max=258.33ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=121.82ms min=112.85ms max=139.62ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=119.69ms min=115.16ms max=134.71ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=87.05ms min=17.82ms max=120.50ms count=12
+D/EGL_emulation( 6151): app_time_stats: avg=118.54ms min=115.43ms max=131.11ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=5496.70ms min=5496.70ms max=5496.70ms count=1
+W/WindowOnBackDispatcher( 6151): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6151): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 6151): app_time_stats: avg=137.33ms min=31.97ms max=463.07ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=118.40ms min=114.14ms max=130.51ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=2303.35ms min=2303.35ms max=2303.35ms count=1
+D/EGL_emulation( 6151): app_time_stats: avg=147.57ms min=116.78ms max=294.21ms count=7
+D/EGL_emulation( 6151): app_time_stats: avg=118.34ms min=112.68ms max=129.66ms count=9
+W/WindowOnBackDispatcher( 6151): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6151): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+E/AccessibilityBridge( 6151): transform has not been initialized for id = 856
+I/AccessibilityBridge( 6151): Semantics tree:SemanticsNode id=0 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:  +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:  +-- rect.ltrb=(0.0, 0.0, 1080.0, 2400.0)
+I/AccessibilityBridge( 6151): Semantics tree:  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:  SemanticsNode id=1 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:    +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:    +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:    +-- rect.ltrb=(0.0, 0.0, 411.42856, 914.2857)
+I/AccessibilityBridge( 6151): Semantics tree:    +-- transform=[2.625, 0.0, 0.0, 0.0, 0.0, 2.625, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:    SemanticsNode id=855 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:      +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:      +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:      +-- rect.ltrb=(0.0, 0.0, 411.42856, 914.2857)
+I/AccessibilityBridge( 6151): Semantics tree:      +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:      SemanticsNode id=857 identifier=null label=null actions=0 flags=2048
+I/AccessibilityBridge( 6151): Semantics tree:        +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:        +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:        +-- rect.ltrb=(0.0, 0.0, 411.42856, 914.2857)
+I/AccessibilityBridge( 6151): Semantics tree:        +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:        SemanticsNode id=899 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:          +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:          +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:          +-- rect.ltrb=(0.0, 0.0, 411.42856, 104.7619)
+I/AccessibilityBridge( 6151): Semantics tree:          +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:          SemanticsNode id=900 identifier=null label=رجوع actions=4194305 flags=2097352
+I/AccessibilityBridge( 6151): Semantics tree:            +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:            +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:            +-- rect.ltrb=(0.0, 0.0, 48.0, 48.0)
+I/AccessibilityBridge( 6151): Semantics tree:            +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 359.42856, 52.761906, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:          SemanticsNode id=901 identifier=null label=الإعدادات actions=0 flags=4608
+I/AccessibilityBridge( 6151): Semantics tree:            +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:            +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:            +-- rect.ltrb=(0.0, 0.0, 77.76723, 36.0)
+I/AccessibilityBridge( 6151): Semantics tree:            +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 166.83067, 58.761906, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:        SemanticsNode id=858 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:          +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:          +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:          +-- rect.ltrb=(0.0, 0.0, 411.42856, 809.5238)
+I/AccessibilityBridge( 6151): Semantics tree:          +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 104.7619, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:          SemanticsNode id=898 identifier=null label=null actions=8388624 flags=262144
+I/AccessibilityBridge( 6151): Semantics tree:            +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:            +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:            +-- rect.ltrb=(0.0, 0.0, 411.42856, 809.5238)
+I/AccessibilityBridge( 6151): Semantics tree:            +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=859 identifier=null label=المظهر actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 54.0)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=860 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 72.0)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 54.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:              SemanticsNode id=861 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:                +-- rect.ltrb=(0.0, 0.0, 379.42856, 72.0)
+I/AccessibilityBridge( 6151): Semantics tree:                +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=862 identifier=null label=فاتح actions=4194305 flags=270533068
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 118.47619, 48.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 248.95238, 12.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=864 identifier=null label=داكن actions=4194305 flags=270533064
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 118.47619, 48.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 130.4762, 12.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=866 identifier=null label=تلقائي actions=4194305 flags=270533064
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 118.47619, 48.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 12.0, 12.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=868 identifier=null label=خط الأذكار actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 54.0)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 126.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=869 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 212.0)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 180.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:              SemanticsNode id=870 identifier=null label=الحجم
+I/AccessibilityBridge( 6151): سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                +-- rect.ltrb=(0.0, 0.0, 379.42856, 212.0)
+I/AccessibilityBridge( 6151): Semantics tree:                +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=856 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=null
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 0.0, 0.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=null
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=871 identifier=null label=أميري (نسخ) actions=4194305 flags=270533068
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 173.71428, 48.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 189.71428, 16.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=875 identifier=null label=٢٤ actions=4194496 flags=10485952
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(185.19188, 0.0, 233.19188, 48.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 76.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=873 identifier=null label=القاهرة actions=4194305 flags=270533064
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 173.71428, 48.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 16.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=876 identifier=null label=القراءة والمسبحة actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 54.0)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 392.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=877 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 259.0)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 446.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:              SemanticsNode id=878 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:                +-- rect.ltrb=(0.0, 0.0, 379.42856, 259.0)
+I/AccessibilityBridge( 6151): Semantics tree:                +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=879 identifier=null label=الانتقال التلقائي للذكر التالي
+I/AccessibilityBridge( 6151): عند إكمال عدد التكرار actions=4194305 flags=270729408
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 72.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=881 identifier=null label=إظهار فضل الذكر actions=4194305 flags=270729408
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 56.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 73.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=883 identifier=null label=الاهتزاز actions=4194305 flags=270729408
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 56.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 130.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=885 identifier=null label=صوت النقر
+I/AccessibilityBridge( 6151): يعتمد على تفعيل أصوات اللمس في الهاتف actions=4194305 flags=270598336
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 72.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 187.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=887 identifier=null label=التنبيهات actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 54.0)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 705.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=888 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 50.52381)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 759.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:              SemanticsNode id=889 identifier=null label=null actions=0 flags=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:                +-- rect.ltrb=(0.0, 0.0, 379.42856, 50.52381)
+I/AccessibilityBridge( 6151): Semantics tree:                +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=890 identifier=null label=التذكيرات actions=4194305 flags=270532808
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 50.52381)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=891 identifier=null label=الأذكار التلقائية actions=4194305 flags=270541000
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 56.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 57.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=892 identifier=null label=عام actions=0 flags=8192
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 54.0)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 872.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:            SemanticsNode id=893 identifier=null label=null actions=0 flags=8192
+I/AccessibilityBridge( 6151): Semantics tree:              +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:              +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:              +-- rect.ltrb=(0.0, 0.0, 379.42856, 133.5238)
+I/AccessibilityBridge( 6151): Semantics tree:              +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 16.0, 926.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:              SemanticsNode id=894 identifier=null label=null actions=0 flags=8192
+I/AccessibilityBridge( 6151): Semantics tree:                +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                +-- textDirection=UNKNOWN
+I/AccessibilityBridge( 6151): Semantics tree:                +-- rect.ltrb=(0.0, 0.0, 379.42856, 133.5238)
+I/AccessibilityBridge( 6151): Semantics tree:                +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=895 identifier=null label=اللغة
+I/AccessibilityBridge( 6151): العربية — لغات أخرى في التحديثات القادمة actions=0 flags=268443840
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 72.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=896 identifier=null label=سياسة الخصوصية actions=4194305 flags=270541000
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 56.0)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 73.0, 0.0, 1.0]
+I/AccessibilityBridge( 6151): Semantics tree:                SemanticsNode id=897 identifier=null label=عن التطبيق
+I/AccessibilityBridge( 6151): الإصدار ٢.٢.٠ actions=4194305 flags=270541000
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- headingLevel=0
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- textDirection=RTL
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- rect.ltrb=(0.0, 0.0, 379.42856, 3.5238094)
+I/AccessibilityBridge( 6151): Semantics tree:                  +-- transform=[1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 130.0, 0.0, 1.0]
+D/EGL_emulation( 6151): app_time_stats: avg=116.58ms min=15.82ms max=324.46ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=120.57ms min=112.32ms max=137.21ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=4099.87ms min=4099.87ms max=4099.87ms count=1
+D/FlutterJNI( 6151): Sending viewport metrics to the engine.
+D/EGL_emulation( 6151): app_time_stats: avg=122.32ms min=88.68ms max=165.95ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.38ms min=113.90ms max=134.97ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=124.20ms min=116.08ms max=143.46ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=90.18ms min=18.04ms max=133.65ms count=12
+D/EGL_emulation( 6151): app_time_stats: avg=118.04ms min=113.64ms max=130.78ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=2830.91ms min=356.81ms max=5305.01ms count=2
+W/WindowOnBackDispatcher( 6151): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 6151): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 6151): app_time_stats: avg=127.52ms min=28.02ms max=501.53ms count=8
+D/EGL_emulation( 6151): app_time_stats: avg=115.64ms min=88.91ms max=126.80ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=118.46ms min=114.68ms max=126.98ms count=9
+D/EGL_emulation( 6151): app_time_stats: avg=3491.66ms min=3491.66ms max=3491.66ms count=1
+I/flutter ( 6151): 01:44 +1: (tearDownAll)
+I/flutter ( 6151): 01:44 +2: All tests passed!
+All tests passed.

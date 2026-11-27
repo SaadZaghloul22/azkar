@@ -1,0 +1,156 @@
+Resolving dependencies...
+Downloading packages...
+  code_assets 1.2.1 (2.2.0 available)
+  cross_file 0.3.5+5 (0.4.0 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  dbus 0.7.15 (0.8.1 available)
+  flutter_local_notifications 22.3.3 (23.0.4 available)
+  flutter_local_notifications_linux 8.0.2 (9.0.0 available)
+  flutter_local_notifications_platform_interface 12.2.0 (13.0.0 available)
+  flutter_local_notifications_web 1.0.0 (2.0.0 available)
+  flutter_local_notifications_windows 3.1.1 (4.0.1 available)
+  gsettings 0.2.8 (0.2.9 available)
+  hooks 2.0.2 (2.2.0 available)
+  jni 1.1.2 (1.2.1 available)
+  jni_flutter 1.0.4+1 (1.1.0 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  meta 1.18.3 (1.19.0 available)
+  objective_c 9.5.0 (9.6.4 available)
+  petitparser 7.0.2 (7.1.0 available)
+  record_use 0.6.0 (1.1.1 available)
+  shared_preferences_android 2.5.4 (2.5.5 available)
+  shared_preferences_foundation 2.5.7 (2.6.2 available)
+  sqflite 2.4.5 (2.4.6 available)
+  sqflite_android 2.4.5 (2.4.6 available)
+  sqflite_common 2.5.14 (2.5.17 available)
+  sqflite_darwin 2.4.4+1 (2.4.6 available)
+  sqflite_platform_interface 2.4.3 (2.4.4 available)
+  synchronized 3.5.0 (3.6.1+1 available)
+  test_api 0.7.12 (0.7.15 available)
+  vector_math 2.4.0 (2.4.4 available)
+  xml 7.0.1 (7.1.0 available)
+Got dependencies!
+29 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Running Gradle task 'assembleDebug'...                          
+WARNING: Your app uses the following plugins that apply Kotlin Gradle Plugin (KGP): workmanager_android
+Future versions of Flutter will fail to build if your app uses plugins that apply KGP.
+
+Please check the changelogs of these plugins and upgrade to a version that supports Built-in Kotlin.
+If no such version exists, report the issue to the plugin. If necessary, here is a guide on filing
+an issue against a plugin: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-app-developers#report-incompatible-kotlin-gradle-plugin-usage-to-plugin-authors
+
+If you are a plugin author, please migrate your plugin to Built-in Kotlin using this guide: https://docs.flutter.dev/release/breaking-changes/migrate-to-built-in-kotlin/for-plugin-authors
+Running Gradle task 'assembleDebug'...                             19.1s
+✓ Built build/app/outputs/flutter-apk/app-debug.apk
+Installing build/app/outputs/flutter-apk/app-debug.apk...          408ms
+D/FlutterGeolocator( 7687): Creating service.
+D/FlutterGeolocator( 7687): Binding to location service.
+I/Choreographer( 7687): Skipped 39 frames!  The application may be doing too much work on its main thread.
+D/FlutterGeolocator( 7687): Geolocator foreground service connected
+D/FlutterGeolocator( 7687): Initializing Geolocator services
+D/FlutterGeolocator( 7687): Flutter engine connected. Connected engine count 1
+D/FlutterJNI( 7687): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:46101/viSsTtINNEM=/
+VMServiceFlutterDriver: Isolate found with number: 2581957172407519
+VMServiceFlutterDriver: Isolate 2581957172407519 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter ( 7687): 00:00 +0: floating azkar demo
+VMServiceFlutterDriver: Connected to Flutter application.
+D/FlutterJNI( 7687): Sending viewport metrics to the engine.
+D/FlutterJNI( 7687): Sending viewport metrics to the engine.
+D/FlutterJNI( 7687): Sending viewport metrics to the engine.
+D/FlutterJNI( 7687): Sending viewport metrics to the engine.
+D/CompatibilityChangeReporter( 7687): Compat change id reported: 194532703; UID 10194; state: ENABLED
+D/CompatibilityChangeReporter( 7687): Compat change id reported: 253665015; UID 10194; state: ENABLED
+D/WM-SystemJobScheduler( 7687): Scheduling work ID b40c2898-2137-4f51-8e9b-df2cf385dcdbJob ID 0
+D/WM-GreedyScheduler( 7687): Starting work for b40c2898-2137-4f51-8e9b-df2cf385dcdb
+D/WM-SystemJobService( 7687): onStartJob for WorkGenerationalId(workSpecId=b40c2898-2137-4f51-8e9b-df2cf385dcdb, generation=0)
+D/WM-Processor( 7687): Processor: processing WorkGenerationalId(workSpecId=b40c2898-2137-4f51-8e9b-df2cf385dcdb, generation=0)
+D/WM-Processor( 7687): Work WorkGenerationalId(workSpecId=b40c2898-2137-4f51-8e9b-df2cf385dcdb, generation=0) is already enqueued for processing
+D/CompatibilityChangeReporter( 7687): Compat change id reported: 263076149; UID 10194; state: ENABLED
+D/EGL_emulation( 7687): app_time_stats: avg=271.76ms min=124.09ms max=626.28ms count=5
+D/WM-WorkerWrapper( 7687): Starting work for dev.fluttercommunity.workmanager.BackgroundWorker
+D/WM-PackageManagerHelper( 7687): androidx.work.impl.background.systemalarm.RescheduleReceiver enabled
+I/flutter ( 7687): [IMPORTANT:flutter/shell/platform/android/android_context_gl_impeller.cc(104)] Using the Impeller rendering backend (OpenGLES).
+D/FlutterGeolocator( 7687): Geolocator foreground service connected
+D/FlutterGeolocator( 7687): Initializing Geolocator services
+D/FlutterGeolocator( 7687): Flutter engine connected. Connected engine count 2
+D/ProfileInstaller( 7687): Installing profile for com.azk.azkarak
+D/EGL_emulation( 7687): app_time_stats: avg=217.59ms min=60.38ms max=517.38ms count=5
+I/PlayCore( 7687): UID: [10194]  PID: [7687] AppUpdateService : requestUpdateInfo(com.azk.azkarak)
+I/PlayCore( 7687): UID: [10194]  PID: [7687] AppUpdateService : Initiate binding to the service.
+I/PlayCore( 7687): UID: [10194]  PID: [7687] AppUpdateService : Failed to bind to the service.
+D/FlutterGeolocator( 7687): Flutter engine disconnected. Connected engine count 1
+D/FlutterGeolocator( 7687): Disposing Geolocator services
+E/FlutterGeolocator( 7687): Geolocator position updates stopped
+E/FlutterGeolocator( 7687): There is still another flutter engine connected, not stopping location service
+I/WM-WorkerWrapper( 7687): Worker result SUCCESS for Work [ id=b40c2898-2137-4f51-8e9b-df2cf385dcdb, tags={ dev.fluttercommunity.workmanager.BackgroundWorker } ]
+D/EGL_emulation( 7687): app_time_stats: avg=410.94ms min=130.14ms max=651.25ms count=3
+D/WM-Processor( 7687): Processor b40c2898-2137-4f51-8e9b-df2cf385dcdb executed; reschedule = false
+D/WM-SystemJobService( 7687): b40c2898-2137-4f51-8e9b-df2cf385dcdb executed on JobScheduler
+D/WM-GreedyScheduler( 7687): Cancelling work ID b40c2898-2137-4f51-8e9b-df2cf385dcdb
+D/WM-SystemJobScheduler( 7687): Scheduling work ID b40c2898-2137-4f51-8e9b-df2cf385dcdbJob ID 0
+VMServiceFlutterDriver: request_data message is taking a long time to complete...
+D/EGL_emulation( 7687): app_time_stats: avg=113.72ms min=83.61ms max=126.57ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=115.94ms min=110.13ms max=125.36ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.62ms min=112.20ms max=121.35ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=117.51ms min=113.91ms max=127.46ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=113.18ms min=23.17ms max=199.34ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.82ms min=109.84ms max=122.38ms count=9
+W/WindowOnBackDispatcher( 7687): OnBackInvokedCallback is not enabled for the application.
+W/WindowOnBackDispatcher( 7687): Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+D/EGL_emulation( 7687): app_time_stats: avg=136.58ms min=82.72ms max=277.27ms count=8
+D/EGL_emulation( 7687): app_time_stats: avg=109.96ms min=81.06ms max=125.87ms count=10
+D/EGL_emulation( 7687): app_time_stats: avg=116.63ms min=109.83ms max=125.79ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=117.97ms min=113.17ms max=125.52ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=151.57ms min=67.18ms max=215.26ms count=7
+D/EGL_emulation( 7687): app_time_stats: avg=117.48ms min=109.99ms max=131.18ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=115.02ms min=105.55ms max=122.09ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.66ms min=104.23ms max=128.41ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=113.53ms min=69.95ms max=135.64ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=87.77ms min=28.22ms max=143.50ms count=12
+D/EGL_emulation( 7687): app_time_stats: avg=116.72ms min=112.63ms max=123.42ms count=9
+D/CompatibilityChangeReporter( 7687): Compat change id reported: 210923482; UID 10194; state: ENABLED
+D/EGL_emulation( 7687): app_time_stats: avg=169.42ms min=46.21ms max=579.60ms count=6
+D/EGL_emulation( 7687): app_time_stats: avg=114.22ms min=89.24ms max=127.42ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.55ms min=110.46ms max=125.02ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.61ms min=111.94ms max=120.91ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.89ms min=113.76ms max=121.19ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=117.02ms min=114.11ms max=122.23ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.48ms min=114.72ms max=120.09ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.18ms min=111.93ms max=120.86ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.93ms min=111.88ms max=122.29ms count=9
+W/WindowOnBackDispatcher( 7687): sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@22b8fde
+D/EGL_emulation( 7687): app_time_stats: avg=121.49ms min=90.38ms max=151.97ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=117.11ms min=104.73ms max=141.94ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.82ms min=113.74ms max=118.92ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.46ms min=112.56ms max=122.12ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=125.93ms min=114.18ms max=199.10ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=112.82ms min=88.11ms max=133.42ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.64ms min=112.41ms max=121.09ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.79ms min=111.31ms max=126.96ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.44ms min=112.28ms max=120.97ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.65ms min=114.66ms max=120.86ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.57ms min=106.40ms max=127.18ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.66ms min=114.19ms max=120.74ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.62ms min=113.72ms max=121.15ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.66ms min=113.36ms max=122.09ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=117.12ms min=95.47ms max=138.84ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.62ms min=112.14ms max=120.65ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.11ms min=110.91ms max=121.91ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=117.16ms min=114.48ms max=123.43ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=145.03ms min=112.11ms max=241.95ms count=7
+W/WindowOnBackDispatcher( 7687): sendCancelIfRunning: isInProgress=falsecallback=android.view.ViewRootImpl$$ExternalSyntheticLambda17@8c3c8d
+D/EGL_emulation( 7687): app_time_stats: avg=135.89ms min=50.71ms max=296.29ms count=6
+D/EGL_emulation( 7687): app_time_stats: avg=127.83ms min=58.06ms max=319.56ms count=8
+D/EGL_emulation( 7687): app_time_stats: avg=116.45ms min=109.86ms max=122.21ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.65ms min=112.96ms max=119.23ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.71ms min=111.07ms max=123.71ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.65ms min=112.91ms max=118.57ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=122.12ms min=104.44ms max=167.82ms count=9
+D/EGL_emulation( 7687): app_time_stats: avg=116.73ms min=114.24ms max=121.13ms count=9
+I/flutter ( 7687): 01:01 +1: (tearDownAll)
+I/flutter ( 7687): 01:01 +2: All tests passed!
+All tests passed.
